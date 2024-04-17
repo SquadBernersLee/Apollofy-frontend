@@ -37,7 +37,7 @@ export async function addSongToUserLikedSongs(
   newSongId: number
 ): Promise<User> {
   try {
-    let users = await getUsers();
+    const users = await getUsers();
 
     const userIndex = users.findIndex((user) => user.id === userId);
 

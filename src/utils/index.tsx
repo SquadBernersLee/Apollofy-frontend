@@ -54,3 +54,8 @@ export interface Genre {
   id: string;
   name: string;
 }
+
+export interface Tracks {
+  id: string;
+  name: string;
+}
