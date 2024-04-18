@@ -16,7 +16,7 @@ export function AppRouter() {
   );
 }
 
- interface PrivateRouteProps {
+interface PrivateRouteProps {
   children: ReactNode;
 }
 

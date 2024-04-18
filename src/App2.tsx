@@ -7,7 +7,6 @@ import { Logout } from "./pages/Login/logout";
 
 export default function App2() {
         const { isAuthenticated } = useAuth0();
-        console.log(isAuthenticated) 
     
     
     
