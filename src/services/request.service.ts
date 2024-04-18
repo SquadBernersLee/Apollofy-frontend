@@ -9,8 +9,8 @@ export const publicRequest = async () => {
 export const protectedRequest = async (getToken: any) => {
 	const { VITE_API_URL: url } = import.meta.env;
 	const token = await getToken();
-	console.log({ token });
-	const response: Response = await fetch(`${url}/protected`, {
+	console.log( token );
+	const response: Response = await fetch(`${url}/<protected>`, {
 		headers: {
 			authorization: `Bearer ${token}`,
 		}

@@ -1,4 +1,4 @@
-import { AvatarGenerator } from "random-avatar-generator";
+// import { AvatarGenerator } from "random-avatar-generator";
 import HorizontalScrollLayout from "../../layouts/horizontalScroll";
 import VerticalScrollLayout from "../../layouts/verticalScroll";
 import { NavBar } from "../../components/navbar";
@@ -7,11 +7,11 @@ import { SmallShowPlaySong } from "../../components/SmallShowPlaySong";
 import { useEffect } from "react";
 import { usePlayer } from "../../contexts/AudioPlayerContext";
 import { getSongs } from "../../contexts/GetTrack";
-import { useAuth } from "../../contexts/AuthContext";
+// import { useAuth } from "../../contexts/AuthContext";
 
 const HomePage = () => {
   const { setSongs } = usePlayer();
-  const { user } = useAuth();
+  // const { user } = useAuth();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,7 +30,7 @@ const HomePage = () => {
     <div className="relative h-screen bg-black">
       <div className="lg:ml-12">
         <div className="relative">
-          <img className="h-20" src={user.profilePicture} alt="Avatar" />
+          {/* <img className="h-20" src={user.profilePicture} alt="Avatar" /> */}
           <svg
             className="h-12 absolute top-5 right-5"
             data-slot="icon"

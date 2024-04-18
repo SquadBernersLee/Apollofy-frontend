@@ -7,7 +7,7 @@ import { UserPage } from "./pages/userPage";
 import { PublicRoutes } from "./types/routes";
 import SearchBarPage from "./pages/searchPage/search";
 import { FilterProvider } from "./contexts/FilterContext";
-// import {Login} from "./pages/Login/Login";
+// import { Login } from "./pages/Login/Login";
 import { AuthProvider } from "./contexts/AuthContext";
 
 import { EditProfile } from "./pages/editProfile";

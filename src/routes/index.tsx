@@ -22,6 +22,7 @@ export function AppRouter() {
 
 export const PrivateRoute: React.FC<PrivateRouteProps> = ({ children }) => {
   const { isAuthenticated } = useAuth();
+  console.log(isAuthenticated)
   const navigate = useNavigate();
 
   useEffect(

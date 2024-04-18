@@ -1,35 +1,36 @@
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import { NavBar } from "../../components/navbar";
-import { useAuth } from "../../contexts/AuthContext";
-import { usePlayer } from "../../contexts/AudioPlayerContext";
-import VerticalScrollLayout from "../../layouts/verticalScroll";
+// import { useAuth } from "../../contexts/AuthContext";
+// import { usePlayer } from "../../contexts/AudioPlayerContext";
+// import VerticalScrollLayout from "../../layouts/verticalScroll";
 import { SmallShowPlaySong } from "../../components/SmallShowPlaySong";
-import IndividualMySong from "../../components/individualMySong";
+// import IndividualMySong from "../../components/individualMySong";
 
-interface Song {
-  id: number;
-  name: string;
-  artist: string;
-  url: string;
-  thumbnail: string;
-  genre: string;
-  liked: boolean;
-}
+
+// interface Song {
+//   id: number;
+//   name: string;
+//   artist: string;
+//   url: string;
+//   thumbnail: string;
+//   genre: string;
+//   liked: boolean;
+// }
 
 export function MySongs() {
-  const { user } = useAuth();
+  // const { user } = useAuth();
 
-  const { songs, setUsingLiked, setSongs, setCurrentSongIndex } = usePlayer();
-  const [likedSongs, setLikedSongs] = useState<Song[]>();
+  // const { setUsingLiked, setSongs, setCurrentSongIndex } = usePlayer();
+  // const [likedSongs] = useState<Song[]>();
 
-  useEffect(() => {
-    const filteredSongs = songs.filter((song) =>
-      user.likedSongs.includes(song.id)
-    );
-    setLikedSongs(filteredSongs);
-  }, [songs, user]);
+  // useEffect(() => {
+  //   const filteredSongs = songs.filter((song) =>
+  //     user.likedSongs.includes(song.id)
+  //   );
+  //   setLikedSongs(filteredSongs);
+  // }, [songs, user]);
 
-  const [selectedSongId, setSelectedSongId] = useState<number | null>(null);
+  // const [selectedSongId, setSelectedSongId] = useState<number | null>(null);
 
   return (
     <div className="bg-black h-screen w-screen relative">
@@ -45,8 +46,8 @@ export function MySongs() {
         <p className="text-white text-3xl lg:ml-5/12">My songs</p>
       </div>
 
-      <VerticalScrollLayout height="30rem">
-        <div className="ml-5">
+      {/* <VerticalScrollLayout height="30rem"> */}
+        {/* <div className="ml-5">
           {likedSongs?.map((song) => {
             const isSelected = song.id === selectedSongId;
             const handleSongClick = () => {
@@ -65,11 +66,12 @@ export function MySongs() {
               />
             );
           })}
-        </div>
-      </VerticalScrollLayout>
+        </div> */}
+      {/* </VerticalScrollLayout> */}
 
       <div className="absolute bottom-14 w-screen">
-        <SmallShowPlaySong selectedSongId={selectedSongId} />
+        <SmallShowPlaySong selectedSongId={null} />   
+        {/* selectedSongId={selectedSongId} */}
       </div>
       <div className="absolute bottom-0 w-screen">
         <NavBar />

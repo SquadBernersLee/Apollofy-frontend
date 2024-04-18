@@ -115,3 +115,5 @@ export async function deleteSongFromUserLikedSongs(
     console.error("Error deleting song from user's likedSongs:", error);
   }
 }
+
+export type { User };
