@@ -27,9 +27,9 @@ const HomePage = () => {
   }, [setSongs]);
 
   return (
-    <div className="relative h-screen bg-black">
+    <div className="relative h-screen bg-background">
       <div className="lg:ml-12">
-        <div className="relative">
+        <div className="relative flex">
           {/* <img className="h-20" src={user.profilePicture} alt="Avatar" /> */}
           <svg
             className="h-12 absolute top-5 right-5"
@@ -46,19 +46,19 @@ const HomePage = () => {
 
         <VerticalScrollLayout height="42rem">
           <div className="mt-5 ml-5">
-            <h2 className="text-2xl mb-5 text-gray-400">Top Albums</h2>
+            <h2 className="text-2xl mb-5 text-tops">Top Albums</h2>
             <HorizontalScrollLayout>
               <TopAlbums />
             </HorizontalScrollLayout>
           </div>
           <div className="mt-5 ml-5 ">
-            <h2 className="text-2xl mb-5 text-gray-400">Top Artists</h2>
+            <h2 className="text-2xl mb-5 text-tops">Top Artists</h2>
             <HorizontalScrollLayout>
               <TopArtist />
             </HorizontalScrollLayout>
           </div>
           <div className="mt-5 ml-5 ">
-            <h2 className="text-2xl mb-5 text-gray-400">Top Playlists</h2>
+            <h2 className="text-2xl mb-5 text-tops">Top Playlists</h2>
             <HorizontalScrollLayout>
               <TopPlaylist />
             </HorizontalScrollLayout>

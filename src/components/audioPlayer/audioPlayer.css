@@ -4,7 +4,7 @@ input[type="range"]::-webkit-slider-thumb {
   appearance: none;
   width: 1px; /* Set the width of the thumb */
   height: 10px; /* Set the height of the thumb */
-  background: green; /* Set the color of the thumb to black */
+  background: blue; /* Set the color of the thumb to black */
   border-radius: 0; /* Remove border radius to make it rectangular */
   cursor: pointer; /* Show pointer cursor when hovering over the thumb */
 }

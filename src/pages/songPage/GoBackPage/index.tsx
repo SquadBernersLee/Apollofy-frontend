@@ -1,6 +1,6 @@
-import React from "react";
+// import React from "react";
 import { IoChevronBackSharp } from "react-icons/io5";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export function GoBackPageBtn() {
   const navigate = useNavigate();
@@ -11,7 +11,7 @@ export function GoBackPageBtn() {
 
   return (
     <button onClick={goBack}>
-      <IoChevronBackSharp className="text-2xl text-white ml-3 mt-3 hover:text-accent" />
+      <IoChevronBackSharp className="text-2xl text-tops ml-3 mt-3 hover:text-names" />
     </button>
   );
 }

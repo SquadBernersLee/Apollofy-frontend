@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useRef, useEffect } from "react";
 import ReactPlayer from "react-player";
 
@@ -8,6 +9,8 @@ import {
   IoPlaySkipForward,
   IoHeart,
 } from "react-icons/io5";
+import { LiaRandomSolid } from "react-icons/lia";
+import { MdOutlineRestartAlt } from "react-icons/md";
 import "./audioPlayer.css";
 import { usePlayer } from "../../contexts/AudioPlayerContext";
 
@@ -130,93 +133,100 @@ const AudioPlayer = () => {
   };
 
   return (
-    <div className="bg-black relative">
-      <div className="absolute right-5">
-        {/* Button triggering the function */}
-        <button onClick={handleAddSongClick}>
-          <IoHeart
-            className="text-white hover:text-accent"
-            style={{ fontSize: "2em", cursor: "pointer" }}
+    <>
+      <div className="bg-background relative">
+        <div className="absolute right-5">
+          {/* Button triggering the function */}
+          <button onClick={handleAddSongClick}>
+            <IoHeart
+              className="text-white hover:text-btn"
+              style={{ fontSize: "2em", cursor: "pointer" }}
+            />
+          </button>
+        </div>
+        <div className="mt-10">
+          <p className="text-white">Volume:</p>
+          <input
+            className="w-20 appearance-none h-1 rounded-md"
+            type="range"
+            min={0}
+            max={1}
+            step="any"
+            value={volume}
+            onChange={handleVolumeChange}
+            style={{
+              background: `linear-gradient(to right, blue ${
+                volume * 100
+              }%, transparent 0%)`,
+              WebkitAppearance: "none",
+            }}
           />
-        </button>
+        </div>
+        <div>
+          <ReactPlayer
+            width="100%"
+            height="80px"
+            ref={playerRef}
+            url={
+              songs.length > 0 && currentSongIndex !== null
+                ? songs[currentSongIndex].url
+                : ""
+            }
+            playing={playing}
+            volume={volume}
+            onProgress={handleProgress}
+            onDuration={handleDuration}
+          />
+        </div>
+        <div className="bg-gray-300 flex">
+          <input
+            className="w-screen"
+            type="range"
+            min={0}
+            max={1}
+            step="any"
+            value={played}
+            onChange={handleSeekChange}
+            onMouseUp={handleSeekMouseUp}
+            style={{
+              background: `linear-gradient(to right, blue ${
+                played * 100
+              }%, transparent 0%)`,
+              WebkitAppearance: "none",
+            }}
+          />
+        </div>
+        <div className="relative">
+          <span className="ml-5 text-white hover:text-btn">{formatTime(currentTime)}</span>
+          <span className="absolute right-5 text-white hover:text-btn">
+            {formatTime(duration)}
+          </span>
+        </div>
+        <div className="w-screen flex gap-10 justify-center">
+          <LiaRandomSolid 
+            className="text-4xl text-white hover:text-btn"
+          />
+          <IoPlaySkipBackSharp
+            className="text-4xl text-white hover:text-btn"
+            onClick={handleSkipBackward}
+          />
+          <button onClick={togglePlaying}>
+            {playing ? (
+              <IoPauseCircleOutline className="text-4xl text-white hover:text-btn" />
+            ) : (
+              <IoPlayCircleOutline className="text-4xl text-white hover:text-btn" />
+            )}
+          </button>
+          <IoPlaySkipForward
+            className="text-4xl text-white hover:text-btn"
+            onClick={handleSkipForward}
+          />
+          <MdOutlineRestartAlt
+            className="text-4xl text-white hover:text-btn"  
+          />
+        </div>
       </div>
-      <div>
-        <ReactPlayer
-          width="100%"
-          height="80px"
-          ref={playerRef}
-          url={
-            songs.length > 0 && currentSongIndex !== null
-              ? songs[currentSongIndex].url
-              : ""
-          }
-          playing={playing}
-          volume={volume}
-          onProgress={handleProgress}
-          onDuration={handleDuration}
-        />
-      </div>
-      <div className="bg-gray-300 flex">
-        <input
-          className="w-screen"
-          type="range"
-          min={0}
-          max={1}
-          step="any"
-          value={played}
-          onChange={handleSeekChange}
-          onMouseUp={handleSeekMouseUp}
-          style={{
-            background: `linear-gradient(to right, green ${
-              played * 100
-            }%, transparent 0%)`,
-            WebkitAppearance: "none",
-          }}
-        />
-      </div>
-      <div className="relative">
-        <span className="ml-5 text-white">{formatTime(currentTime)}</span>
-        <span className="absolute right-5 text-white">
-          {formatTime(duration)}
-        </span>
-      </div>
-      <div className="w-screen flex gap-10 justify-center">
-        <IoPlaySkipBackSharp
-          className="text-4xl text-white"
-          onClick={handleSkipBackward}
-        />
-        <button onClick={togglePlaying}>
-          {playing ? (
-            <IoPauseCircleOutline className="text-4xl text-white" />
-          ) : (
-            <IoPlayCircleOutline className="text-4xl text-white" />
-          )}
-        </button>
-        <IoPlaySkipForward
-          className="text-4xl text-white"
-          onClick={handleSkipForward}
-        />
-      </div>
-
-      <div className="mt-10">
-        <p className="text-white">Volume:</p>
-        <input
-          className="w-20 appearance-none h-1 rounded-md"
-          type="range"
-          min={0}
-          max={1}
-          step="any"
-          value={volume}
-          onChange={handleVolumeChange}
-          style={{
-            background: `linear-gradient(to right, green ${
-              volume * 100
-            }%, transparent 0%)`,
-            WebkitAppearance: "none",
-          }}
-        />
-      </div>
-    </div>
+    </>
   );
 };
 

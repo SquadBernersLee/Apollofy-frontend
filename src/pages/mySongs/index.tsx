@@ -33,17 +33,17 @@ export function MySongs() {
   // const [selectedSongId, setSelectedSongId] = useState<number | null>(null);
 
   return (
-    <div className="bg-black h-screen w-screen relative">
+    <div className="bg-background h-screen w-screen relative">
       <div className="pt-10 pl-20 lg:ml-5/12">
         <img
           src="src/assets/images/liked.jpeg"
           alt=""
-          className="w-52  top-20 left-20 rounded-xl"
+          className="w-52 ml-10 top-20 left-20 rounded-xl"
         />
       </div>
 
-      <div className=" pt-10 pl-5 pb-5 ml-20 lg:ml-40">
-        <p className="text-white text-3xl lg:ml-5/12">My songs</p>
+      <div className=" pt-10 pl-5 pb-5 ml-7 lg:ml-40">
+        <p className="text-names text-3xl lg:ml-5/12">My songs</p>
       </div>
 
       {/* <VerticalScrollLayout height="30rem"> */}

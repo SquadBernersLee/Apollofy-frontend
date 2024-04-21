@@ -97,7 +97,7 @@ export function SmallShowPlaySong({ selectedSongId }: props) {
   };
 
   return (
-    <section className="lg:bottom-0 lg:mt-10 lg:ml-12">
+    <section className="lg:bottom-0 lg:mt-10 lg:ml-12 mb-11 bg-black">
       <ReactPlayer
         width="1px"
         height="1px"
@@ -125,12 +125,12 @@ export function SmallShowPlaySong({ selectedSongId }: props) {
 
         <Link to={PublicRoutes.SONG}>
           <div>
-            <p className="text-white ml-5 hover:text-yellow-300">
+            <p className="text-white ml-5 hover:text-btn">
               {songs.length > 0 && currentSongIndex !== null
                 ? songs[currentSongIndex].name
                 : ""}
             </p>
-            <p className="text-white ml-5 text-sm hover:text-yellow-300">
+            <p className="text-white ml-5 text-sm hover:text-btn">
               {songs.length > 0 && currentSongIndex !== null
                 ? songs[currentSongIndex].artist
                 : ""}
@@ -142,9 +142,9 @@ export function SmallShowPlaySong({ selectedSongId }: props) {
           <div className="absolute right-5 top-1">
             <button onClick={togglePlaying}>
               {playing ? (
-                <IoPauseCircleOutline className="text-4xl text-white hover:text-yellow-300" />
+                <IoPauseCircleOutline className="text-4xl text-white hover:text-btn" />
               ) : (
-                <IoPlayCircleOutline className="text-4xl text-white hover:text-yellow-300" />
+                <IoPlayCircleOutline className="text-4xl text-white hover:text-btn" />
               )}
             </button>
           </div>

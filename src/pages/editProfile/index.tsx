@@ -70,16 +70,16 @@ export const EditProfile = () => {
 
   return (
     <>
-      <div className="bg-gray-800 h-screen">
+      <div className="bg-background h-screen">
         <div className="lg:pl-80 lg:pr-56">
           <div className="flex flex-col p-5 gap-3 ">
             <div className="flex flex-row lg:mt-12">
-              <h2 className="text-white text-5xl">Edit profile</h2>
+              <h2 className="text-names text-5xl">Edit profile</h2>
               <button
                 onClick={handleChangeProfile}
-                className=" flex justify-center items-center bg-gray-800 border border-s-white ml-12 rounded-xl h-12 w-12 hover:bg-accent"
+                className=" flex justify-center items-center bg-black border border-s-white ml-12 rounded-xl h-12 w-12 hover:bg-btn"
               >
-                <IoPencil className="text-white text-2xl hover:text-black" />
+                <IoPencil className="text-tops text-2xl hover:text-black" />
               </button>
             </div>
 

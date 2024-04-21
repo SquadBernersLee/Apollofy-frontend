@@ -17,9 +17,12 @@ export const theme = {
       // Add more custom sizes as needed
     },
     colors: {
-      background: `#0D0D0D`,
-      player: `#4D4B4B`,
-      accent: `#dfcc89`,
+      background: `#1C1C1C`,
+      player: `#05D3F8`,
+      btn: `#009DDD`,
+      names: `#386DBD`,
+      tops: `#0F4571`,
+
     },
     margin: {
       "1/12": "18%",

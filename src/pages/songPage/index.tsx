@@ -5,7 +5,7 @@ import AudioPlayer from '../../components/audioPlayer'
 
 export function SongPage() {
   return (
-    <section  className='bg-black w-screen h-screen'>
+    <section  className='bg-background w-screen h-screen'>
         <GoBackPageBtn />
         <MusicShowPage />
         <AudioPlayer/>

@@ -37,8 +37,8 @@ export function TopAlbums() {
               alt={album.name}
             />
           </Link>
-          <p className="text-white">{album.name}</p>
-          <p className="text-gray-500">{album.artist}</p>
+          <p className="text-tops">{album.name}</p>
+          <p className="text-names">{album.artist}</p>
         </div>
       ))}
     </div>

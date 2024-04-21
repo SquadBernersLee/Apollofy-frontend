@@ -4,9 +4,9 @@ import { NavBar } from "../../components/navbar";
 import { useFilter } from "../../contexts/FilterContext";
 import { PublicRoutes } from "../../types/routes";
 import { usePlayer } from "../../contexts/AudioPlayerContext";
-import { Album, Artist } from "../../utils";
+import { Album, Artist } from "../../utils/index.tsx";
 import { getAlbums, getArtists } from "../../contexts/GetTrack";
-import { Song } from "../../utils";
+import { Song } from "../../utils/index.tsx";
 import { SmallShowPlaySong } from "../../components/SmallShowPlaySong";
 
 export default function SearchBarPage() {
@@ -83,27 +83,26 @@ export default function SearchBarPage() {
   const [selectedSongId, setSelectedSongId] = useState<number | null>(null);
 
   return (
-    <div className="flex flex-col bg-black h-screen">
+    <div className="flex flex-col bg-background h-screen">
       <form className="mt-10 ml-10 lg:ml-20">
-        <label className="text-white text-4xl lg:ml-40">Search</label>
+        <label className="text-tops text-4xl lg:ml-40">Search</label>
         <br />
         <input
-          className="input p-1.5 rounded lg:ml-40"
+          className="input p-1.5 rounded mt-5 bg-names lg:ml-40"
           type="text"
           placeholder="Artist, song or album"
           value={filter}
           onChange={handleFilter}
         />
       </form>
-      <button className="search-btn lg:ml-40">Search</button>
 
       {!filter || filter.length < 4 ? (
-        <p className="text-white text-2xl ml-12 lg:ml-80">Top songs</p>
+        <p className="text-tops text-2xl mt-10 ml-12 lg:ml-80">Top songs</p>
       ) : (
         <>
           {songResults.length > 0 && (
             <div className="lg:ml-5">
-              <h3 className="text-white text-lg ml-5 lg:ml-80">Songs</h3>
+              <h3 className="text-tops text-lg ml-5 lg:ml-80">Songs</h3>
               {songResults.map((song) => (
                 <SearchResultSong
                   song={song}
@@ -115,7 +114,7 @@ export default function SearchBarPage() {
           )}
           {artistResults.length > 0 && (
             <div className="lg:ml-80">
-              <h3 className="text-white text-lg ml-5">Artists</h3>
+              <h3 className="text-tops text-lg ml-5">Artists</h3>
               {artistResults.map((artist) => (
                 <SearchResultArtist artist={artist} key={artist.id} />
               ))}
@@ -123,7 +122,7 @@ export default function SearchBarPage() {
           )}
           {albumResults.length > 0 && (
             <div className="lg:ml-80">
-              <h3 className="text-white text-lg ml-5">Albums</h3>
+              <h3 className="text-tops text-lg ml-5">Albums</h3>
               {albumResults.map((album) => (
                 <SearchResultAlbum album={album} key={album.id} />
               ))}
@@ -156,7 +155,7 @@ export function SearchResultSong({
   return (
     <div
       onClick={handleClick}
-      className="bg-accent my-2 mx-5 rounded flex cursor-pointer lg:ml-80 lg:max-w-80"
+      className="bg-btn my-2 mx-5 rounded flex cursor-pointer lg:ml-80 lg:max-w-80"
     >
       <img className="w-8 h-8 m-2" src={song.thumbnail} />
       <div>
@@ -169,7 +168,7 @@ export function SearchResultSong({
 export function SearchResultArtist({ artist }: { artist: Artist }) {
   return (
     <Link to={PublicRoutes.SONG}>
-      <div className="bg-accent my-2 mx-5 rounded flex  lg:max-w-80">
+      <div className="bg-btn my-2 mx-5 rounded flex  lg:max-w-80">
         <img className="w-8 h-8 m-2" src={artist.photoUrl} />
         <p className="text-black ml-5">{artist.name}</p>
       </div>
@@ -180,7 +179,7 @@ export function SearchResultArtist({ artist }: { artist: Artist }) {
 export function SearchResultAlbum({ album }: { album: Album }) {
   return (
     <Link to={PublicRoutes.SONG}>
-      <div className="bg-accent my-2 mx-5 rounded flex  lg:max-w-80">
+      <div className="bg-btn my-2 mx-5 rounded flex  lg:max-w-80">
         <img src={album.imageUrl} className="w-8 h-8 m-2" />
         <div>
           <p className="text-black ml-5">{album.name}</p>
