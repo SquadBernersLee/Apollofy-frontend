@@ -4,14 +4,30 @@ import VerticalScrollLayout from "../../layouts/verticalScroll";
 import { NavBar } from "../../components/navbar";
 import { TopAlbums, TopArtist, TopPlaylist } from "../../common/musicProfile";
 import { SmallShowPlaySong } from "../../components/SmallShowPlaySong";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { usePlayer } from "../../contexts/AudioPlayerContext";
 import { getSongs } from "../../contexts/GetTrack";
+import { User } from "@auth0/auth0-react";
+import { getUser } from "../../services/UserServices";
+// import { getUsers } from "../../utils";
+// import { UserService } from "../../services/UserServices";
 // import { useAuth } from "../../contexts/AuthContext";
 
 const HomePage = () => {
   const { setSongs } = usePlayer();
-  // const { user } = useAuth();
+  const [Users, setUsers] = useState<User[]>([]);
+
+useEffect(() => {
+  const fetchData = async () => {
+    const User = await getUser();
+    console.log(User)
+    if (User) {
+      setUsers(User);
+    }
+  };
+
+  fetchData();
+}, [setUsers]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -45,6 +61,15 @@ const HomePage = () => {
         </div>
 
         <VerticalScrollLayout height="42rem">
+        <div>
+          <ul>
+            {Users.map((User, index) => (
+              <li key={index } className="bg-slate-50">
+                <p>Holii {User.first_name} caracoli</p>
+              </li>
+            ))}
+          </ul>
+          </div>
           <div className="mt-5 ml-5">
             <h2 className="text-2xl mb-5 text-tops">Top Albums</h2>
             <HorizontalScrollLayout>

@@ -7,13 +7,10 @@ import { UserPage } from "./pages/userPage";
 import { PublicRoutes } from "./types/routes";
 import SearchBarPage from "./pages/searchPage/search";
 import { FilterProvider } from "./contexts/FilterContext";
-// import { Login } from "./pages/Login/Login";
 import { AuthProvider } from "./contexts/AuthContext";
 
 import { EditProfile } from "./pages/editProfile";
-// import { PrivateRoute } from "./routes";
 import { PlayerProvider } from "./contexts/AudioPlayerContext";
-// import SignUp from "./pages/SignUp/signup";
 import { MySongs } from "./pages/mySongs";
 
 function App() {
@@ -24,14 +21,10 @@ function App() {
           <AuthProvider>
             <BrowserRouter>
               <Routes>
-                {/* <Route path={PublicRoutes.HOME} element={<Login />} /> */}
-                {/* <Route path={PublicRoutes.SIGNUP} element={<SignUp />} /> */}
                 <Route
                   path={PublicRoutes.HOME}
                   element={
-                    // <PrivateRoute>
                       <HomePage />
-                    // </PrivateRoute>
                   }
                 />
                 <Route
