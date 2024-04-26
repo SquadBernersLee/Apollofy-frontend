@@ -4,10 +4,23 @@ import VerticalScrollLayout from "../../layouts/verticalScroll";
 import { NavBar } from "../../components/navbar";
 import { TopAlbums, TopArtist, TopPlaylist } from "../../common/musicProfile";
 import { SmallShowPlaySong } from "../../components/SmallShowPlaySong";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { usePlayer } from "../../contexts/AudioPlayerContext";
 import { getSongs } from "../../contexts/GetTrack";
+import {
+  createPlaylist,
+  getPlaylists,
+  updatePlaylist,
+} from "../../services/services.playlist";
 // import { useAuth } from "../../contexts/AuthContext";
+
+interface Playlist {
+  id: number;
+  name: string;
+  imageUrl: string;
+  description: string;
+  primaryColor: string;
+}
 
 const HomePage = () => {
   const { setSongs } = usePlayer();
@@ -26,8 +39,83 @@ const HomePage = () => {
     fetchData();
   }, [setSongs]);
 
+  const [playslits, setPlaylist] = useState<Playlist[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const playlistData = await getPlaylists();
+      if (playlistData) {
+        setPlaylist(playlistData);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const newPlaylist = async () => {
+    const newPlaylistData = {
+      name: "My New Playlist",
+      imageUrl: "https://example.com/image.jpg",
+      description: "This is my new playlist",
+      primaryColor: "#ff0000",
+      userId: 3,
+    };
+
+    try {
+      const response = await createPlaylist(newPlaylistData);
+      if (response) {
+        setPlaylist((prevPlaylists) => [...prevPlaylists, response]);
+      }
+    } catch (error) {
+      console.error("Error creating new playlist:", error);
+    }
+  };
+
+  const changedPlaylist = async () => {
+    const playlistId = 1;
+    const newPlaylistName = "changeFronfront";
+
+    try {
+      const response = await updatePlaylist({
+        id: playlistId,
+        name: newPlaylistName,
+        imageUrl: "asfasdfasdf",
+        description: "descri",
+        primaryColor: "red",
+        userId: 1,
+      });
+      if (response) {
+        setPlaylist((prevPlaylists) =>
+          prevPlaylists.map((playlist) => {
+            if (playlist.id === playlistId) {
+              return { ...playlist, name: newPlaylistName };
+            }
+            return playlist;
+          })
+        );
+      }
+    } catch (error) {
+      console.error("Error updating playlist:", error);
+    }
+  };
   return (
     <div className="relative h-screen bg-background">
+      <button className="text-white" onClick={newPlaylist}>
+        Click here
+      </button>
+      <ul>
+        {playslits.map((playlist, index) => (
+          <li key={index} className="bg-slate-50">
+            {playlist.name}
+          </li>
+          // Assuming each movie object has a 'title' property
+        ))}
+      </ul>
+      <div>
+        <button onClick={changedPlaylist} className="text-white">
+          Updated
+        </button>
+      </div>
       <div className="lg:ml-12">
         <div className="relative flex">
           {/* <img className="h-20" src={user.profilePicture} alt="Avatar" /> */}

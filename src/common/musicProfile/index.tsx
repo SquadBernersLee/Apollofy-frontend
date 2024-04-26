@@ -79,43 +79,42 @@ export function TopArtist() {
             />
 
             <p className="text-white">{artist.name}</p>
-            
           </div>
         ))}
     </div>
   );
 }
 
-interface playList {
+interface Playlist {
   id: number;
   name: string;
-  thumbnail: string;
+  imageUrl: string;
+  description: string;
+  primaryColor: string;
 }
 
 export function TopPlaylist() {
-  const [playlists, setPlaylists] = useState<playList[]>([]);
+  const [playslits, setMovies] = useState<Playlist[]>([]);
 
   useEffect(() => {
-    const fetchPlaylists = async () => {
-      try {
-        const playlistsData = await getPlaylists(); 
-        setPlaylists(playlistsData); 
-      } catch (error) {
-        console.error("Error al obtener las listas de reproducción:", error);
+    const fetchData = async () => {
+      const playlistData = await getPlaylists();
+      if (playlistData) {
+        setMovies(playlistData);
       }
     };
 
-    fetchPlaylists(); 
-  }, []); 
+    fetchData();
+  }, []);
 
   return (
     <div className="flex gap-8">
-      {playlists.length > 0 &&
-        playlists.map((playlist) => (
+      {playslits.length > 0 &&
+        playslits.map((playlist) => (
           <div key={playlist.id} className="w-40">
             <img
               className="rounded-2xl"
-              src={playlist.thumbnail}
+              src={playlist.imageUrl}
               alt={playlist.name}
             />
 
