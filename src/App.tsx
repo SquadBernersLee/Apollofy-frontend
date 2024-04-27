@@ -15,6 +15,8 @@ import { EditProfile } from "./pages/editProfile";
 import { PlayerProvider } from "./contexts/AudioPlayerContext";
 // import SignUp from "./pages/SignUp/signup";
 import { MySongs } from "./pages/mySongs";
+import PlaylistsPage from "./pages/playlists";
+import SelectedPlaylist from "./pages/selectedPlaylist";
 
 function App() {
   return (
@@ -30,7 +32,7 @@ function App() {
                   path={PublicRoutes.HOME}
                   element={
                     // <PrivateRoute>
-                      <HomePage />
+                    <HomePage />
                     // </PrivateRoute>
                   }
                 />
@@ -38,7 +40,7 @@ function App() {
                   path={PublicRoutes.SEARCH}
                   element={
                     // <PrivateRoute>
-                      <SearchBarPage />
+                    <SearchBarPage />
                     // </PrivateRoute>
                   }
                 />
@@ -46,7 +48,7 @@ function App() {
                   path={PublicRoutes.USER}
                   element={
                     // <PrivateRoute>
-                      <UserPage />
+                    <UserPage />
                     // </PrivateRoute>
                   }
                 />
@@ -54,7 +56,23 @@ function App() {
                   path={PublicRoutes.ALBUM}
                   element={
                     // <PrivateRoute>
-                      <AlbumComponents />
+                    <AlbumComponents />
+                    // </PrivateRoute>
+                  }
+                />
+                <Route
+                  path={PublicRoutes.PLAYLISTS}
+                  element={
+                    // <PrivateRoute>
+                    <PlaylistsPage />
+                    // </PrivateRoute>
+                  }
+                />
+                <Route
+                  path={PublicRoutes.SELECTEDPLAYLISTS}
+                  element={
+                    // <PrivateRoute>
+                    <SelectedPlaylist />
                     // </PrivateRoute>
                   }
                 />
@@ -62,7 +80,7 @@ function App() {
                   path={PublicRoutes.SONG}
                   element={
                     // <PrivateRoute>
-                      <SongPage />
+                    <SongPage />
                     // </PrivateRoute>
                   }
                 />
@@ -71,7 +89,7 @@ function App() {
                   path={PublicRoutes.EDITPROFILE}
                   element={
                     // <PrivateRoute>
-                      <EditProfile />
+                    <EditProfile />
                     //  </PrivateRoute>
                   }
                 />
@@ -79,7 +97,7 @@ function App() {
                   path={PublicRoutes.MYSONGS}
                   element={
                     // <PrivateRoute>
-                      <MySongs />
+                    <MySongs />
                     // </PrivateRoute>
                   }
                 />

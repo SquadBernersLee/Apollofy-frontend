@@ -19,6 +19,44 @@ export interface newPlaylist {
   userId: number;
 }
 
+export const followUnfollow = async (userId: number, playlistId: number) => {
+  try {
+    const response = await axios.get(
+      `${baseUrl}/followUnfollow/${userId}/${playlistId}`
+    );
+    return response.data;
+  } catch (error) {
+    return null;
+  }
+};
+
+export const getPlaylistById = async (id: number) => {
+  try {
+    const response = await axios.get(`${baseUrl}/individual/${id}`);
+    return response.data;
+  } catch (error) {
+    return null;
+  }
+};
+
+export const getSongsByPlaylistId = async (playlistId: number) => {
+  try {
+    const response = await axios.get(`${baseUrl}/songs/${playlistId}`);
+    return response.data;
+  } catch (error) {
+    return null;
+  }
+};
+
+export const getFollowedPlaylistsByUserId = async (userId: number) => {
+  try {
+    const response = await axios.get(`${baseUrl}/followedPlaylists/${userId}`);
+    return response.data;
+  } catch (error) {
+    return null;
+  }
+};
+
 export const getPlaylists = async () => {
   try {
     const response = await axios.get(baseUrl);

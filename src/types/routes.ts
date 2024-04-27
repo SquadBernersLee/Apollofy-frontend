@@ -6,6 +6,8 @@ export const PublicRoutes = {
   USER: "/user",
   ALBUM: "/album/:albumid",
   SONG: "/song",
+  PLAYLISTS: "/playlists",
+  SELECTEDPLAYLISTS: "/playlist/:playlistid",
   AUDIOPLAYER: "/audioPlayer",
   MYSONGS: "/mySongs",
   EDITPROFILE: "/editprofile",

@@ -24,12 +24,12 @@ interface AlbumSongs {
 }
 
 export default function AlbumComponents() {
-  const { user, updateUser } = useAuth();
-
+  /*   const { user, updateUser } = useAuth();
+   */
   const { songs } = usePlayer();
   const [likedSongs, setLikedSongs] = useState<Song[]>();
 
-  useEffect(() => {
+  /*   useEffect(() => {
     const filteredSongs = songs.filter((song) =>
       user.likedSongs.includes(song.id)
     );
@@ -39,7 +39,7 @@ export default function AlbumComponents() {
   const handleAddSongClick = () => {
     deleteSongFromUserLikedSongs(user.id, 3);
   };
-
+ */
   const { albums, songs: Song } = usePlayer();
   console.log(albums);
 

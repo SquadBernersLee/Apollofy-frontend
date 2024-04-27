@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import { getAlbums, getArtists, getPlaylists } from "../../contexts/GetTrack";
+import { getAlbums, getArtists } from "../../contexts/GetTrack";
+import {
+  getFollowedPlaylistsByUserId,
+  getPlaylists,
+} from "../../services/services.playlist";
 
 interface Albums {
   id: number;
@@ -98,7 +102,7 @@ export function TopPlaylist() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const playlistData = await getPlaylists();
+      const playlistData = await getFollowedPlaylistsByUserId(3);
       if (playlistData) {
         setMovies(playlistData);
       }
@@ -112,11 +116,13 @@ export function TopPlaylist() {
       {playslits.length > 0 &&
         playslits.map((playlist) => (
           <div key={playlist.id} className="w-40">
-            <img
-              className="rounded-2xl"
-              src={playlist.imageUrl}
-              alt={playlist.name}
-            />
+            <Link to={`/playlist/${playlist.id}`}>
+              <img
+                className="rounded-2xl"
+                src={playlist.imageUrl}
+                alt={playlist.name}
+              />
+            </Link>
 
             <p className="text-white">{playlist.name}</p>
           </div>

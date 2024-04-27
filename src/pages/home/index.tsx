@@ -100,22 +100,6 @@ const HomePage = () => {
   };
   return (
     <div className="relative h-screen bg-background">
-      <button className="text-white" onClick={newPlaylist}>
-        Click here
-      </button>
-      <ul>
-        {playslits.map((playlist, index) => (
-          <li key={index} className="bg-slate-50">
-            {playlist.name}
-          </li>
-          // Assuming each movie object has a 'title' property
-        ))}
-      </ul>
-      <div>
-        <button onClick={changedPlaylist} className="text-white">
-          Updated
-        </button>
-      </div>
       <div className="lg:ml-12">
         <div className="relative flex">
           {/* <img className="h-20" src={user.profilePicture} alt="Avatar" /> */}

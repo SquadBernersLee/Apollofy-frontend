@@ -22,6 +22,9 @@ export function NavBar(): ReactNode {
       <Link to={PublicRoutes.MYSONGS}>
         <IoLibraryOutline className="text-white hover:text-btn lg:mt-40" />
       </Link>
+      <Link to={PublicRoutes.PLAYLISTS}>
+        <IoLibraryOutline className="text-white hover:text-btn lg:mt-40" />
+      </Link>
       <Link to={PublicRoutes.USER}>
         <IoPersonOutline className="text-white hover:text-btn lg:mt-40" />
       </Link>
