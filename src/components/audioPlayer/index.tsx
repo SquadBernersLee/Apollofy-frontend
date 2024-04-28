@@ -205,7 +205,8 @@ const AudioPlayer = () => {
           </span>
         </div>
         <div className="w-screen flex gap-10 justify-center">
-          <LiaRandomSolid className="text-4xl text-white hover:text-btn" />
+          {/*           <LiaRandomSolid className="text-4xl text-white hover:text-btn" />
+           */}{" "}
           <IoPlaySkipBackSharp
             className="text-4xl text-white hover:text-btn"
             onClick={handleSkipBackward}
@@ -221,7 +222,8 @@ const AudioPlayer = () => {
             className="text-4xl text-white hover:text-btn"
             onClick={handleSkipForward}
           />
-          <MdOutlineRestartAlt className="text-4xl text-white hover:text-btn" />
+          {/*           <MdOutlineRestartAlt className="text-4xl text-white hover:text-btn" />
+           */}{" "}
         </div>
       </div>
     </>
