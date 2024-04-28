@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { IoChevronBackSharp } from "react-icons/io5";
 import { NavBar } from "../../components/navbar";
 import {
+  followUnfollow,
   getPlaylistById,
   getSongsByPlaylistId,
 } from "../../services/services.playlist";
@@ -80,6 +81,17 @@ const SelectedPlaylist = () => {
     checkIfFollowing();
   }, []);
 
+  const handleFollowUnfollow = async () => {
+    try {
+      const response = await followUnfollow(3, parseInt(playlistid!));
+      if (response) {
+        setIsFollowing(!isFollowing);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div className="bg-black h-screen w-screen relative">
       <button onClick={goBack}>
@@ -95,6 +107,7 @@ const SelectedPlaylist = () => {
           <button
             className="text-white"
             style={{ backgroundColor: isFollowing ? "red" : "green" }}
+            onClick={handleFollowUnfollow}
           >
             {isFollowing ? "Not Following" : "Following"}
           </button>
