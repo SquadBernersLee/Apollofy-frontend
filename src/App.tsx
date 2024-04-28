@@ -17,6 +17,7 @@ import { PlayerProvider } from "./contexts/AudioPlayerContext";
 import { MySongs } from "./pages/mySongs";
 import PlaylistsPage from "./pages/playlists";
 import SelectedPlaylist from "./pages/selectedPlaylist";
+import UploadSongs from "./pages/uploadSongs";
 
 function App() {
   return (
@@ -98,6 +99,14 @@ function App() {
                   element={
                     // <PrivateRoute>
                     <MySongs />
+                    // </PrivateRoute>
+                  }
+                />
+                <Route
+                  path={PublicRoutes.UPLOAD}
+                  element={
+                    // <PrivateRoute>
+                    <UploadSongs />
                     // </PrivateRoute>
                   }
                 />

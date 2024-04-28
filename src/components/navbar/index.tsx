@@ -8,6 +8,7 @@ import { CiSearch } from "react-icons/ci";
 import { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { PublicRoutes } from "../../types/routes";
+import { BiUpload } from "react-icons/bi";
 
 export function NavBar(): ReactNode {
   return (
@@ -24,6 +25,9 @@ export function NavBar(): ReactNode {
       </Link>
       <Link to={PublicRoutes.PLAYLISTS}>
         <IoLibraryOutline className="text-white hover:text-btn lg:mt-40" />
+      </Link>
+      <Link to={PublicRoutes.UPLOAD}>
+        <BiUpload className="text-white hover:text-btn lg:mt-40" />
       </Link>
       <Link to={PublicRoutes.USER}>
         <IoPersonOutline className="text-white hover:text-btn lg:mt-40" />

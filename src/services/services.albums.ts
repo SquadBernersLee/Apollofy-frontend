@@ -2,6 +2,20 @@ import axios from "axios";
 
 const baseUrl = "http://localhost:4000/api/album";
 
+export const addAlbum = async (albumData: {
+  name: string;
+  imageUrl: string;
+}) => {
+  try {
+    const response = await axios.post(baseUrl, albumData);
+    return response.data;
+  } catch (err) {
+    // Handle errors
+    console.error("Error adding album:", err);
+    throw err; // Re-throw the error to be handled by the caller
+  }
+};
+
 export const getAlbums = async () => {
   try {
     const response = await axios.get(baseUrl);
