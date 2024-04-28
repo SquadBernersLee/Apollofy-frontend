@@ -2,7 +2,7 @@
 import HorizontalScrollLayout from "../../layouts/horizontalScroll";
 import VerticalScrollLayout from "../../layouts/verticalScroll";
 import { NavBar } from "../../components/navbar";
-import { TopAlbums, TopArtist, TopPlaylist } from "../../common/musicProfile";
+import { AllPlaylist, TopAlbums, TopArtist } from "../../common/musicProfile";
 import { SmallShowPlaySong } from "../../components/SmallShowPlaySong";
 import { useEffect, useState } from "react";
 import { usePlayer } from "../../contexts/AudioPlayerContext";
@@ -132,7 +132,7 @@ const HomePage = () => {
           <div className="mt-5 ml-5 ">
             <h2 className="text-2xl mb-5 text-tops">Top Playlists</h2>
             <HorizontalScrollLayout>
-              <TopPlaylist />
+              <AllPlaylist />
             </HorizontalScrollLayout>
           </div>
         </VerticalScrollLayout>

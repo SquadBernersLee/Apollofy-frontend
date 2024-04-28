@@ -6,7 +6,7 @@ import {
   updatePlaylist,
 } from "../../services/services.playlist";
 import HorizontalScrollLayout from "../../layouts/horizontalScroll";
-import { TopPlaylist } from "../../common/musicProfile";
+import { FollowedPlaylist } from "../../common/musicProfile";
 import VerticalScrollLayout from "../../layouts/verticalScroll";
 import CreatePlaylist from "../../components/createPlaylist";
 
@@ -86,9 +86,8 @@ const PlaylistsPage = () => {
         <div className="bg-white">
           <CreatePlaylist />
         </div>
-        <VerticalScrollLayout height="45rem">
-          <TopPlaylist />
-        </VerticalScrollLayout>
+
+        <FollowedPlaylist />
       </div>
 
       <div className="absolute bottom-0 w-screen">

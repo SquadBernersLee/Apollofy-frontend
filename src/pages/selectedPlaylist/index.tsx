@@ -5,9 +5,11 @@ import {
   followUnfollow,
   getPlaylistById,
   getSongsByPlaylistId,
+  isUserFollowingPlaylistService,
 } from "../../services/services.playlist";
 import { useNavigate, useParams } from "react-router";
 import VerticalScrollLayout from "../../layouts/verticalScroll";
+import HorizontalScrollLayout from "../../layouts/horizontalScroll";
 
 export interface Track {
   id: number;
@@ -32,12 +34,17 @@ const SelectedPlaylist = () => {
   const { playlistid } = useParams<{ playlistid?: string }>();
   const number = parseInt(playlistid || "");
   const [currePlaylist, setCurrePlaylist] = useState<Playlist | undefined>();
+  const [isFollowing, setIsFollowing] = useState<boolean>(false);
+
   useEffect(() => {
     const fetchData = async () => {
       const playlistData = await getSongsByPlaylistId(number);
       if (playlistData) {
         setTracks(playlistData);
       }
+      const isUserFollowing = await isUserFollowingPlaylistService(3, number);
+      setIsFollowing(isUserFollowing);
+      console.log("isFollowing:" + isFollowing);
     };
 
     fetchData();
@@ -59,27 +66,6 @@ const SelectedPlaylist = () => {
   const goBack = () => {
     navigate(-1);
   };
-
-  const [isFollowing, setIsFollowing] = useState(false);
-  const checkIfFollowing = async () => {
-    const response = await fetch(
-      `https://api.spotify.com/v1/playlists/${playlistid}/followers/contains`,
-      {
-        method: "GET",
-        headers: {
-          Authorization: "Bearer YOUR_ACCESS_TOKEN",
-          "Content-Type": "application/json",
-        },
-      }
-    );
-
-    const data = await response.json();
-    setIsFollowing(data[0]);
-  };
-
-  useEffect(() => {
-    checkIfFollowing();
-  }, []);
 
   const handleFollowUnfollow = async () => {
     try {
@@ -106,10 +92,10 @@ const SelectedPlaylist = () => {
         <div>
           <button
             className="text-white"
-            style={{ backgroundColor: isFollowing ? "red" : "green" }}
+            style={{ backgroundColor: isFollowing ? "green" : "red" }}
             onClick={handleFollowUnfollow}
           >
-            {isFollowing ? "Not Following" : "Following"}
+            {isFollowing ? "Following" : "Not Following"}
           </button>
         </div>
       </div>
@@ -121,18 +107,16 @@ const SelectedPlaylist = () => {
         <p className="text-white text-xl">{currePlaylist?.description}</p>
       </div>
 
-      <VerticalScrollLayout height="25rem">
-        <div className=" w-screen">
-          {tracks.length > 0 &&
-            tracks.map((track) => (
-              <div key={track.id} className="w-40">
-                <img className="rounded-2xl" src={track.url} alt={track.name} />
+      <div className=" flex flex-row">
+        {tracks.length > 0 &&
+          tracks.map((track) => (
+            <div key={track.id} className="w-40">
+              <img className="rounded-2xl" src={track.url} alt={track.name} />
 
-                <p className="text-white">{track.name}</p>
-              </div>
-            ))}
-        </div>
-      </VerticalScrollLayout>
+              <p className="text-white">{track.name}</p>
+            </div>
+          ))}
+      </div>
       <div className="absolute bottom-14 w-screen">
         {/*         <SmallShowPlaySong selectedSongId={selectedSongId} />
          */}{" "}

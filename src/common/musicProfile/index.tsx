@@ -97,12 +97,46 @@ interface Playlist {
   primaryColor: string;
 }
 
-export function TopPlaylist() {
+export function FollowedPlaylist() {
   const [playslits, setMovies] = useState<Playlist[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
       const playlistData = await getFollowedPlaylistsByUserId(3);
+      if (playlistData) {
+        setMovies(playlistData);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  return (
+    <div className=" gap-8">
+      {playslits.length > 0 &&
+        playslits.map((playlist) => (
+          <div key={playlist.id} className="w-40 ">
+            <Link to={`/playlist/${playlist.id}`}>
+              <img
+                className="rounded-2xl"
+                src={playlist.imageUrl}
+                alt={playlist.name}
+              />
+            </Link>
+
+            <p className="text-white">{playlist.name}</p>
+          </div>
+        ))}
+    </div>
+  );
+}
+
+export function AllPlaylist() {
+  const [playslits, setMovies] = useState<Playlist[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const playlistData = await getPlaylists();
       if (playlistData) {
         setMovies(playlistData);
       }

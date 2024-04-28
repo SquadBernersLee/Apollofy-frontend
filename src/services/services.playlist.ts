@@ -19,6 +19,20 @@ export interface newPlaylist {
   userId: number;
 }
 
+export const isUserFollowingPlaylistService = async (
+  userId: number,
+  playlistId: number
+) => {
+  try {
+    const response = await axios.get(
+      `${baseUrl}/is-following-playlist/${userId}/${playlistId}`
+    );
+    return response.data;
+  } catch (error) {
+    return null;
+  }
+};
+
 export const followUnfollow = async (userId: number, playlistId: number) => {
   try {
     const response = await axios.get(
