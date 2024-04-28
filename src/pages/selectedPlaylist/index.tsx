@@ -12,6 +12,9 @@ import { useNavigate, useParams } from "react-router";
 import VerticalScrollLayout from "../../layouts/verticalScroll";
 import HorizontalScrollLayout from "../../layouts/horizontalScroll";
 import { getTracks } from "../../services/services.tracks";
+import IndividualSong from "../../components/individualSong";
+import { SmallShowPlaySong } from "../../components/SmallShowPlaySong";
+import { usePlayer } from "../../contexts/AudioPlayerContext";
 
 export interface Track {
   id: number;
@@ -37,6 +40,8 @@ const SelectedPlaylist = () => {
   const number = parseInt(playlistid || "");
   const [currePlaylist, setCurrePlaylist] = useState<Playlist | undefined>();
   const [isFollowing, setIsFollowing] = useState<boolean>(false);
+  const [selectedSongId, setSelectedSongId] = useState<number | null>(null);
+  const { setSongs } = usePlayer();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -169,20 +174,28 @@ const SelectedPlaylist = () => {
       <div className="  pl-5 pb-10">
         <p className="text-white text-xl">{currePlaylist?.description}</p>
       </div>
+      <VerticalScrollLayout height="25rem">
+        <div className=" flex flex-col">
+          {tracks.length > 0 &&
+            tracks.map((track) => (
+              <div key={track.id} className="w-40 flex flex-col">
+                <IndividualSong
+                  key={track.id}
+                  songName={track.name}
+                  groupName={" "}
+                  isSelected={false}
+                  onClick={() => {
+                    setSelectedSongId(track.id);
+                    setSongs(tracks);
+                  }}
+                />
+              </div>
+            ))}
+        </div>
+      </VerticalScrollLayout>
 
-      <div className=" flex flex-row">
-        {tracks.length > 0 &&
-          tracks.map((track) => (
-            <div key={track.id} className="w-40">
-              <img className="rounded-2xl" src={track.url} alt={track.name} />
-
-              <p className="text-white">{track.name}</p>
-            </div>
-          ))}
-      </div>
       <div className="absolute bottom-14 w-screen">
-        {/*         <SmallShowPlaySong selectedSongId={selectedSongId} />
-         */}{" "}
+        <SmallShowPlaySong selectedSongId={selectedSongId} />
       </div>
       <div className="absolute bottom-0 w-screen">
         <NavBar />

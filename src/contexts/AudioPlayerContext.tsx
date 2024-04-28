@@ -7,6 +7,7 @@ import {
 } from "react";
 import { getAlbums } from "../utils";
 import { getTracks } from "../services/services.tracks";
+import { getAlbumsWithTracks } from "../services/services.albums";
 
 interface PlayerContextType {
   playing: boolean;
@@ -91,8 +92,9 @@ export const PlayerProvider = ({ children }: PlayerProviderProps) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const albumsData = await getAlbums();
-        setAlbums(albumsData);
+        const albumsData = await getAlbumsWithTracks();
+        console.log("del servicio:", albumsData);
+        setAlbums(albumsData.data);
       } catch (error) {
         console.error("Error fetching songs:", error);
       }
