@@ -34,47 +34,62 @@ const CreatePlaylist = () => {
   };
 
   return (
-    <div>
+    <div className="flex justify-center items-center ">
       {isOpen ? (
-        <div className="modal">
-          <div className="modal-content ">
-            <h2 className="text-white">Create Playlist</h2>
-            <form onSubmit={handleSubmit}>
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-75">
+          <div className="rounded-lg p-8">
+            <h2 className="text-2xl font-bold mb-4 text-white">
+              Create Playlist
+            </h2>
+            <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label>
+                <label className="block text-white">
                   Name:
                   <input
                     type="text"
                     value={playlistName}
                     onChange={(event) => setPlaylistName(event.target.value)}
+                    className="form-input mt-1 block w-full text-black "
                   />
                 </label>
               </div>
               <div>
-                <label>
+                <label className="block text-white">
                   Image URL:
                   <input
                     type="text"
                     value={imageURL}
                     onChange={(event) => setImageURL(event.target.value)}
+                    className="form-input mt-1 block w-full text-black"
                   />
                 </label>
               </div>
               <div>
-                <label>
+                <label className="block text-white">
                   Description:
                   <textarea
                     value={description}
                     onChange={(event) => setDescription(event.target.value)}
+                    className="form-textarea mt-1 block w-full text-black"
                   />
                 </label>
               </div>
-              <button type="submit">Create Playlist</button>
+              <button
+                type="submit"
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              >
+                Create Playlist
+              </button>
             </form>
           </div>
         </div>
       ) : (
-        <button onClick={handleOpen}>Crear playlist</button>
+        <button
+          onClick={handleOpen}
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Create Playlist
+        </button>
       )}
     </div>
   );

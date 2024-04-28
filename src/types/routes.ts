@@ -12,4 +12,5 @@ export const PublicRoutes = {
   MYSONGS: "/mySongs",
   EDITPROFILE: "/editprofile",
   UPLOAD: "/upload",
+  LIBRARY: "/library",
 };

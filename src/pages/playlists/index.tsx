@@ -83,11 +83,13 @@ const PlaylistsPage = () => {
     <div className="bg-black h-screen w-screen relative">
       <div className="absolute top-12">
         <h2 className="text-2xl mb-5 text-tops">Your Playlists</h2>
-        <div className="bg-white">
+        <div className="">
           <CreatePlaylist />
         </div>
 
-        <FollowedPlaylist />
+        <div className="mt-12">
+          <FollowedPlaylist />
+        </div>
       </div>
 
       <div className="absolute bottom-0 w-screen">

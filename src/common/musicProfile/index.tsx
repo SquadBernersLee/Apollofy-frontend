@@ -111,19 +111,18 @@ export function FollowedPlaylist() {
   }, []);
 
   return (
-    <div className=" gap-8">
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
       {playslits.length > 0 &&
         playslits.map((playlist) => (
-          <div key={playlist.id} className="w-40 ">
+          <div key={playlist.id} className="flex flex-col items-center">
             <Link to={`/playlist/${playlist.id}`}>
               <img
-                className="rounded-2xl"
+                className="rounded-lg w-full h-auto"
                 src={playlist.imageUrl}
                 alt={playlist.name}
               />
             </Link>
-
-            <p className="text-white">{playlist.name}</p>
+            <p className="mt-2 text-center text-white">{playlist.name}</p>
           </div>
         ))}
     </div>

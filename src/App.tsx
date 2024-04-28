@@ -15,6 +15,7 @@ import { MySongs } from "./pages/mySongs";
 import PlaylistsPage from "./pages/playlists";
 import SelectedPlaylist from "./pages/selectedPlaylist";
 import UploadSongs from "./pages/uploadSongs";
+import LibraryPage from "./pages/LibraryPage";
 
 function App() {
   return (
@@ -94,6 +95,14 @@ function App() {
                   element={
                     // <PrivateRoute>
                     <MySongs />
+                    // </PrivateRoute>
+                  }
+                />
+                <Route
+                  path={PublicRoutes.LIBRARY}
+                  element={
+                    // <PrivateRoute>
+                    <LibraryPage />
                     // </PrivateRoute>
                   }
                 />

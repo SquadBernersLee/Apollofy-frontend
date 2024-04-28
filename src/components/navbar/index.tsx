@@ -20,15 +20,14 @@ export function NavBar(): ReactNode {
         <CiSearch className="text-white hover:text-btn lg:mt-40" />
       </Link>
 
-      <Link to={PublicRoutes.MYSONGS}>
+      <Link to={PublicRoutes.LIBRARY}>
         <IoLibraryOutline className="text-white hover:text-btn lg:mt-40" />
       </Link>
-      <Link to={PublicRoutes.PLAYLISTS}>
-        <IoLibraryOutline className="text-white hover:text-btn lg:mt-40" />
-      </Link>
+
       <Link to={PublicRoutes.UPLOAD}>
         <BiUpload className="text-white hover:text-btn lg:mt-40" />
       </Link>
+
       <Link to={PublicRoutes.USER}>
         <IoPersonOutline className="text-white hover:text-btn lg:mt-40" />
       </Link>

@@ -28,9 +28,15 @@ const UploadSongs = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
+      const updatedTrackData = {
+        ...trackData,
+        genreId: 1,
+        albumId: 1,
+      };
+
       // Call createTrackService with trackData
-      await createTrack(trackData);
-      console.log("Track added successfully!");
+      await createTrack(updatedTrackData);
+      console.log("track data:" + JSON.stringify(trackData));
       // Reset form fields
       setTrackData({
         name: "",
