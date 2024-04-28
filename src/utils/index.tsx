@@ -74,7 +74,7 @@ export interface ArtistFromSearch {
   id: number;
   first_name: string;
   last_name: string;
-  profilePicture: string;
+  img: string;
 }
 
 export interface SongFromSearch {
