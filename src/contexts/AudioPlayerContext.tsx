@@ -28,11 +28,10 @@ interface PlayerContextType {
 interface Song {
   id: number;
   name: string;
-  artist: string;
   url: string;
+  genreId: number;
+  albumId: number;
   thumbnail: string;
-  genre: string;
-  liked: boolean;
 }
 
 interface Albums {

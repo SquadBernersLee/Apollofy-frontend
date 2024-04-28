@@ -60,3 +60,12 @@ export const likeTrack = async (userid: number, trackid: number) => {
     return null;
   }
 };
+
+export const deleteTrack = async (trackId: number) => {
+  try {
+    const response = await axios.delete(`${baseUrl}/${trackId}`);
+    return response.data;
+  } catch (err) {
+    return null;
+  }
+};

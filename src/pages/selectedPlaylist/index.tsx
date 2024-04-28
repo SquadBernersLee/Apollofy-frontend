@@ -181,6 +181,7 @@ const SelectedPlaylist = () => {
               <div key={track.id} className="w-40 flex flex-col">
                 <IndividualSong
                   key={track.id}
+                  songId={track.id}
                   songName={track.name}
                   groupName={" "}
                   isSelected={false}

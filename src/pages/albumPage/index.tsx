@@ -116,6 +116,7 @@ export default function AlbumComponents() {
             return (
               <IndividualSong
                 key={song.id}
+                songId={song.id}
                 songName={song.name}
                 groupName={song.artist}
                 isSelected={isSelected}
