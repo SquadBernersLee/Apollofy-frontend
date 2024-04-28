@@ -5,6 +5,9 @@ import { NavBar } from "../../components/navbar";
 import { Logout } from "../Login/logout";
 import CreateUserComponent from "./createUser";
 import UpdateUserComponent from "./updateUser";
+import { useEffect, useState } from "react";
+import { User } from "../../utils";
+import { getUser } from "../../services/UserServices";
 
 export const UserPage = () => {
 
@@ -20,6 +23,19 @@ export const UserPage = () => {
       // Aquí podrías mostrar un mensaje de error o realizar alguna otra acción
     }
   };
+
+  const [users, setUsers] = useState<User[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const playlistData = await getUser();
+      if (playlistData) {
+        setUsers(playlistData.data);
+      }
+    };
+
+    fetchData();
+  }, [setUsers]);
 
   return (
     <>
@@ -40,16 +56,75 @@ export const UserPage = () => {
             <UpdateUserComponent />
           </div>
           <div className="flex items-center justify-center flex-col mt-32">
-            <div className="flex justify-center items-center size-44 m-8 lg:size-48">
-              <p>imagen de la persona</p>
+          <div className="ml-20 flex mt-4">
+              <ul>
+                {users.slice(0, 1).map((User, index) => (
+                  <li key={index}>
+                    <p className="text-names">{User.img}</p>
+                  </li>
+                  // Assuming each movie object has a 'title' property
+                ))} 
+              </ul>
             </div>
-            <div className="flex mt-4">
-              <div className="flex flex-col">
-                <p className="m-2  text-3xl text-names lg:text-4xl">
-                  nombre e informacion de la persona  
-                {/* {User.password} */}
-                </p>
-              </div>
+            <div className="ml-20 flex mt-4">
+              <ul>
+                {users.slice(0, 1).map((User, index) => (
+                  <li key={index}>
+                    <p className="text-names">Hola {User.first_name} {User.last_name}, Bienvenido de nuevo!</p>
+                  </li>
+                  // Assuming each movie object has a 'title' property
+                ))} 
+              </ul>
+            </div>
+            <div className="ml-20 flex mt-4">
+              <ul>
+                {users.slice(0, 1).map((User, index) => (
+                  <li key={index}>
+                    <p className="text-names">email:{User.email}</p>
+                  </li>
+                  // Assuming each movie object has a 'title' property
+                ))} 
+              </ul>
+            </div>
+            <div className="ml-20 flex mt-4">
+              <ul>
+                {users.slice(0, 1).map((User, index) => (
+                  <li key={index}>
+                    <p className="text-names">From: {User.city}, {User.country}</p>
+                  </li>
+                  // Assuming each movie object has a 'title' property
+                ))} 
+              </ul>
+            </div>
+            <div className="ml-20 flex mt-4">
+              <ul>
+                {users.slice(0, 1).map((User, index) => (
+                  <li key={index}>
+                    <p className="text-names">Gender: {User.gender}</p>
+                  </li>
+                  // Assuming each movie object has a 'title' property
+                ))} 
+              </ul>
+            </div>
+            <div className="ml-20 flex mt-4">
+              <ul>
+                {users.slice(0, 1).map((User, index) => (
+                  <li key={index}>
+                    <p className="text-names">Date of Bitrh: {User.dateOfBirth}</p>
+                  </li>
+                  // Assuming each movie object has a 'title' property
+                ))} 
+              </ul>
+            </div>
+            <div className="ml-20 flex mt-4">
+              <ul>
+                {users.slice(0, 1).map((User, index) => (
+                  <li key={index}>
+                    <p className="text-names">WOW! you have {User.popularity} starts</p>
+                  </li>
+                  // Assuming each movie object has a 'title' property
+                ))} 
+              </ul>
             </div>
           </div>
         </div>
