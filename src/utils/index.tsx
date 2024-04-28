@@ -30,16 +30,26 @@ export interface Song {
 
 export interface User {
   id: number;
-  name: string;
+  rolId: number | null;
+  first_name: string;
   last_name: string;
   email: string;
-  password: string;
   city: string;
+  password: string;
   gender: string;
-  profilePicture: string;
   country: string;
-  dateOfBirth: number;
-  likedSongs: number[];
+  img: string;
+  public_id_img?: string | null;
+  dateOfBirth: string;
+  genreId: number;
+  popularity: number;
+  // Roles: Roles;
+  // Followers: Followers[];
+  // Followed: Followers[];
+  // LikedAlbums: LikedAlbums[];
+  // FollowPlaylist: FollowPlaylist[];
+  // Playlist: Playlist[];
+  // AlbumArtist: AlbumArtist[];
 }
 
 export interface Album {

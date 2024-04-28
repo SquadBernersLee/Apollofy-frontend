@@ -1,11 +1,11 @@
 import { NavBar } from "../../components/navbar";
 
-import { useAuth } from "../../contexts/AuthContext";
-import { deleteSongFromUserLikedSongs } from "../../utils";
+// import { useAuth } from "../../contexts/AuthContext";
+// import { deleteSongFromUserLikedSongs } from "../../utils";
 import IndividualSong from "../../components/individualSong";
 import { usePlayer } from "../../contexts/AudioPlayerContext";
 import VerticalScrollLayout from "../../layouts/verticalScroll";
-import { useEffect, useState } from "react";
+import { useState } from "react"; // useEffect,
 import { useNavigate, useParams } from "react-router-dom";
 import { SmallShowPlaySong } from "../../components/SmallShowPlaySong";
 import { IoChevronBackSharp } from "react-icons/io5";
@@ -27,7 +27,7 @@ export default function AlbumComponents() {
   /*   const { user, updateUser } = useAuth();
    */
   const { songs } = usePlayer();
-  const [likedSongs, setLikedSongs] = useState<Song[]>();
+  // const [likedSongs, setLikedSongs] = useState<Song[]>();
 
   /*   useEffect(() => {
     const filteredSongs = songs.filter((song) =>
@@ -48,34 +48,32 @@ export default function AlbumComponents() {
 
   console.log(number);
 
-  const selectedAlbum = albums.find((album) => album.id === number);
-  if (selectedAlbum) {
-    console.log(selectedAlbum.songs);
-  } else {
-    console.log("Album not found");
-  }
+  // const selectedAlbum = albums.find((album) => album.id === number);
+  // if (selectedAlbum) {
+  //   console.log(selectedAlbum.songs);
+  // } else {
+  //   console.log("Album not found");
+  // }
 
   console.log("song:" + songs[1].id);
 
   const albumSongs: AlbumSongs = {};
 
-  if (selectedAlbum) {
-    const selectedAlbumSongs = songs.filter((song) =>
-      selectedAlbum.songs.includes(song.id)
-    );
-
-    selectedAlbumSongs.forEach((song) => {
-      albumSongs[song.id] = {
-        id: song.id,
-        name: song.name,
-        artist: song.artist,
-        url: song.url,
-        thumbnail: song.thumbnail,
-        genre: song.genre,
-        liked: song.liked,
-      };
-    });
-  }
+  //   selectedAlbumSongs.forEach((song) = // if (selectedAlbum) {
+  // //   const selectedAlbumSongs = songs.filter((song) =>
+  // //     selectedAlbum.songs.includes(song.id)
+  // //   );> {
+  //     albumSongs[song.id] = {
+  //       id: song.id,
+  //       name: song.name,
+  //       artist: song.artist,
+  //       url: song.url,
+  //       thumbnail: song.thumbnail,
+  //       genre: song.genre,
+  //       liked: song.liked,
+  //     };
+  //   });
+  // }
 
   const [selectedSongId, setSelectedSongId] = useState<number | null>(null);
 
@@ -92,14 +90,14 @@ export default function AlbumComponents() {
       </button>
       <div className="pt-10 pl-20">
         <img
-          src={selectedAlbum?.imageUrl}
+          // src={selectedAlbum?.imageUrl}
           alt=""
           className="w-52  top-20 left-20 rounded-xl"
         />
       </div>
 
       <div className="pt-10 pl-5 ">
-        <p className="text-white text-3xl">{selectedAlbum?.name}</p>
+        {/* <p className="text-white text-3xl">{selectedAlbum?.name}</p> */}
       </div>
       {/*   <div className="  pl-5 pb-10">
         <p className="text-white text-xl">{selectedAlbum?.artist}</p>

@@ -1,45 +1,43 @@
 import axios from "axios"
 
-const baseUrl = 'http://localhost:3000/api/users/account'
-export class UserService {
-    static async getUsers() {
-        try {
-            const response = await axios.get(baseUrl)
-            return response.data
-        } catch (error) {
-            console.log(error)
-        }
+const baseUrl = 'http://localhost:4000/api/user/account/'
+
+export const getUser = async () => {
+    try {
+        const response = await axios.get(baseUrl);
+        return response.data;
+    } catch (err) {
+        console.error("Error fetching users:", err);
+        throw new Error("Failed to fetch users");
     }
-    static async getUser(id: string) {
-        try {
-            const response = await axios.get(baseUrl + id)
-            return response.data
-        } catch (error) {
-            console.log(error)
-        }
+};
+
+export const CreateUser = async () => {
+    try {
+        const response = await axios.post(baseUrl);
+        return response.data;
+    } catch (err) {
+        console.error("Error creating users:", err);
+        throw new Error("Failed to fetch users");
     }
-    static async postUser(user: string) {
-        try {
-            const response = await axios.post(baseUrl, user)
-            return response.data
-        } catch (error) {
-            console.log(error)
-        }
+};
+
+export const UpdateUser = async () => {
+    try {
+        const response = await axios.patch(`${baseUrl}/3`);
+        return response.data;
+    } catch (err) {
+        console.error("Error updating users:", err);
+        throw new Error("Failed to fetch users");
     }
-    static async patchUser(user: string) {
-        try {
-            const response = await axios.patch(baseUrl, user)
-            return response.data
-        } catch (error) {
-            console.log(error)
-        }
+};
+
+export const deleteUser = async () => {
+    try {
+        const response = await axios.delete(`${baseUrl}/3`);
+        return response.data;
+    } catch (err) {
+        console.error("Error deleting users:", err);
+        throw new Error("Failed to fetch users");
     }
-    static async deleteUser(id: string) {
-        try {
-            const response = await axios.delete(baseUrl + id)
-            return response.data
-        } catch (error) {
-            console.log(error)
-        }
-    }
-}
+};

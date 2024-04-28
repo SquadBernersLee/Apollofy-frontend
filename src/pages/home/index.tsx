@@ -5,6 +5,7 @@ import { NavBar } from "../../components/navbar";
 import { AllPlaylist, TopAlbums, TopArtist } from "../../common/musicProfile";
 import { SmallShowPlaySong } from "../../components/SmallShowPlaySong";
 import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { usePlayer } from "../../contexts/AudioPlayerContext";
 import { getSongs } from "../../contexts/GetTrack";
 import {
@@ -24,7 +25,18 @@ interface Playlist {
 
 const HomePage = () => {
   const { setSongs } = usePlayer();
-  // const { user } = useAuth();
+  const [users, setUsers] = useState<User[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const playlistData = await getUser();
+      if (playlistData) {
+        setUsers(playlistData.data);
+      }
+    };
+
+    fetchData();
+  }, [setUsers]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -117,6 +129,18 @@ const HomePage = () => {
         </div>
 
         <VerticalScrollLayout height="42rem">
+          <div className="ml-20">
+            <ul>
+              {users.slice(0, 1).map((User, index) => (
+                <li key={index}>
+                  <p className="text-names">
+                    Hola {User.first_name}, Bienvenido de nuevo!
+                  </p>
+                </li>
+                // Assuming each movie object has a 'title' property
+              ))}
+            </ul>
+          </div>
           <div className="mt-5 ml-5">
             <h2 className="text-2xl mb-5 text-tops">Top Albums</h2>
             <HorizontalScrollLayout>
@@ -124,6 +148,7 @@ const HomePage = () => {
             </HorizontalScrollLayout>
           </div>
           <div className="mt-5 ml-5 ">
+            {/* <p>{users[0].first_name}</p> */}
             <h2 className="text-2xl mb-5 text-tops">Top Artists</h2>
             <HorizontalScrollLayout>
               <TopArtist />

@@ -21,8 +21,7 @@ export const theme = {
       player: `#05D3F8`,
       btn: `#009DDD`,
       names: `#386DBD`,
-      tops: `#0F4571`,
-
+      tops: `#0F4571`,    
     },
     margin: {
       "1/12": "18%",
