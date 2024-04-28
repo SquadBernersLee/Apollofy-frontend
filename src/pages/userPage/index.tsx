@@ -5,8 +5,6 @@ import { NavBar } from "../../components/navbar";
 import { Logout } from "../Login/logout";
 import CreateUserComponent from "./createUser";
 import UpdateUserComponent from "./updateUser";
-// import * as from '../userPage/index.css' 
-// import './index.css';
 
 export const UserPage = () => {
 
@@ -30,13 +28,11 @@ export const UserPage = () => {
           <div className="flex justify-between gap-72 mx-5 mt-8 lg:mt-8">
             <Logout />
           </div>
-          <div>
             <div>
-                <button className="bg-tops mb-6">
-                  <p className="text-white" onClick={deleteUser}>Borrar</p>
-                </button>
-              </div>
-          </div>
+              <button className="text-xl">
+                <p className="text-btn" onClick={deleteUser}>Delete User</p>
+              </button>
+            </div>
           <div>
             <CreateUserComponent />
           </div>
@@ -50,7 +46,8 @@ export const UserPage = () => {
             <div className="flex mt-4">
               <div className="flex flex-col">
                 <p className="m-2  text-3xl text-names lg:text-4xl">
-                  nombre e informacion de la persona
+                  nombre e informacion de la persona  
+                {/* {User.password} */}
                 </p>
               </div>
             </div>

@@ -59,7 +59,15 @@ const HomePage = () => {
         </div>
 
         <VerticalScrollLayout height="42rem">
-        <div>
+          <div className="ml-20">
+            <ul>
+              {users.slice(0, 1).map((User, index) => (
+                <li key={index}>
+                  <p className="text-names">Hola {User.first_name}, Bienvenido de nuevo!</p>
+                </li>
+                // Assuming each movie object has a 'title' property
+              ))} 
+            </ul>
           </div>
           <div className="mt-5 ml-5">
             <h2 className="text-2xl mb-5 text-tops">Top Albums</h2>
@@ -68,14 +76,6 @@ const HomePage = () => {
             </HorizontalScrollLayout>
           </div>
           <div className="mt-5 ml-5 ">
-          <ul>
-            {users.slice(1).map((User, index) => (
-              <li key={index} className="bg-slate-50">
-                {User.first_name}
-              </li>
-              // Assuming each movie object has a 'title' property
-            ))} 
-          </ul>
           {/* <p>{users[0].first_name}</p> */}
             <h2 className="text-2xl mb-5 text-tops">Top Artists</h2>
             <HorizontalScrollLayout>

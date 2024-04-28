@@ -90,65 +90,75 @@ import Modal from 'react-modal';
         
 
     return (
-        <div className='mt-40 '>
-        <button onClick={() => setModalIsOpen(true)}>Cambiar Datos Del Usuario</button>
+        <div className='mt-4'>
+        <button className="text-xl" onClick={() => setModalIsOpen(true)}>
+            <p className="text-btn">Change User info</p>
+        </button>
         <Modal
             isOpen={modalIsOpen}
             onRequestClose={() => setModalIsOpen(false)}
             style={customStyles}
             contentLabel="Crear Usuario Modal"
         >
-            <h2>Cambiar Usuario</h2>
-            <form onSubmit={handleSubmit}>
-            {/* <label>
-                Rol ID:
-                <input type="text" name="rolId" value={formData.rolId} onChange={handleChange} />
-            </label> */}
-            <label>
-                Nombre:
-                <input type="text" name="first_name" value={formData.first_name} onChange={handleInputChange} />
-            </label>
-            <label>
-                Apellido:
-                <input type="text" name="last_name" value={formData.last_name} onChange={handleInputChange} />
-            </label>
-            <label>
-                Email:
-                <input type="email" name="email" value={formData.email} onChange={handleInputChange} />
-            </label>
-            <label>
-                Ciudad:
-                <input type="text" name="city" value={formData.city} onChange={handleInputChange} />
-            </label>
-            <label>
-                Contraseña:
-                <input type="password" name="password" value={formData.password} onChange={handleInputChange} />
-            </label>
-            <label>
-                Género:
-                <input type="text" name="gender" value={formData.gender} onChange={handleInputChange} />
-            </label>
-            <label>
-                País:
-                <input type="text" name="country" value={formData.country} onChange={handleInputChange} />
-            </label>
-            <label>
-                Imagen:
-                <input type="text" name="img" value={formData.img} onChange={handleInputChange} />
-            </label>
-            <label>
-                Fecha de Nacimiento:
-                <input type="text" name="dateOfBirth" value={formData.dateOfBirth} onChange={handleInputChange} />
-            </label>
-            <label>
-                popularidad:
-                <input type="text" name="popularity" value={formData.popularity} onChange={handleChange} />
-            </label>
-            <label>
-                genereId:
-                <input type="text" name="genreId" value={formData.genreId} onChange={handleChange} />
-            </label>
-            <button type="submit">Change</button>
+            <h2 className="text-2xl font-bold mb-4">Change User Information</h2>
+            <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="grid grid-cols-2 gap-x-4">
+                    <label className="flex flex-col">
+                        <span className="mb-1">Nombre:</span>
+                        <input type="text" name="first_name" value={formData.first_name} onChange={handleInputChange} className="border border-gray-300 px-3 py-2 rounded-md focus:outline-none focus:ring focus:border-blue-500" />
+                    </label>
+                    <label className="flex flex-col">
+                        <span className="mb-1">Apellido:</span>
+                        <input type="text" name="last_name" value={formData.last_name} onChange={handleInputChange} className="border border-gray-300 px-3 py-2 rounded-md focus:outline-none focus:ring focus:border-blue-500" />
+                        </label>
+                </div>
+                <div className="grid grid-cols-2 gap-x-4">
+                    <label className="flex flex-col">
+                        <span className="mb-1">Email:</span>
+                        <input type="email" name="email" value={formData.email} onChange={handleInputChange} className="border border-gray-300 px-3 py-2 rounded-md focus:outline-none focus:ring focus:border-blue-500" />
+                    </label>
+                    <label className="flex flex-col">
+                        <span className="mb-1">Ciudad:</span>
+                        <input type="text" name="city" value={formData.city} onChange={handleInputChange} className="border border-gray-300 px-3 py-2 rounded-md focus:outline-none focus:ring focus:border-blue-500" />
+                    </label>
+                </div>
+                <div className="grid grid-cols-2 gap-x-4">
+                    <label className="flex flex-col">
+                        <span className="mb-1">Contraseña:</span>
+                        <input type="password" name="password" value={formData.password} onChange={handleInputChange} className="border border-gray-300 px-3 py-2 rounded-md focus:outline-none focus:ring focus:border-blue-500" />
+                    </label>
+                    <label className="flex flex-col">
+                        <span className="mb-1">Género:</span>
+                        <input type="text" name="gender" value={formData.gender} onChange={handleInputChange} className="border border-gray-300 px-3 py-2 rounded-md focus:outline-none focus:ring focus:border-blue-500" />
+                    </label>
+                </div>
+                <div className="grid grid-cols-2 gap-x-4">
+                    <label className="flex flex-col">
+                        <span className="mb-1">País:</span>
+                        <input type="text" name="country" value={formData.country} onChange={handleInputChange} className="border border-gray-300 px-3 py-2 rounded-md focus:outline-none focus:ring focus:border-blue-500" />
+                    </label>
+                    <label className="flex flex-col">
+                        <span className="mb-1">Imagen:</span>
+                        <input type="text" name="img" value={formData.img} onChange={handleInputChange} className="border border-gray-300 px-3 py-2 rounded-md focus:outline-none focus:ring focus:border-blue-500" />
+                    </label>
+                </div>
+                <div className="grid grid-cols-2 gap-x-4">
+                    <label className="flex flex-col">
+                        <span className="mb-1">Fecha de Nacimiento:</span>
+                        <input type="text" name="dateOfBirth" value={formData.dateOfBirth} onChange={handleInputChange} className="border border-gray-300 px-3 py-2 rounded-md focus:outline-none focus:ring focus:border-blue-500" />
+                    </label>
+                    <label className="flex flex-col">
+                        <span className="mb-1">Popularidad:</span>
+                        <input type="text" name="popularity" value={formData.popularity} onChange={handleChange} className="border border-gray-300 px-3 py-2 rounded-md focus:outline-none focus:ring focus:border-blue-500" />
+                    </label>
+                </div>
+                <div className="grid grid-cols-2 gap-x-4">
+                    <label className="flex flex-col">
+                        <span className="mb-1">Género ID:</span>
+                        <input type="text" name="genreId" value={formData.genreId} onChange={handleChange} className="border border-gray-300 px-3 py-2 rounded-md focus:outline-none focus:ring focus:border-blue-500" />
+                    </label>
+                </div>
+                <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300">Change</button>
             </form>
         </Modal>
         </div>
