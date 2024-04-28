@@ -7,27 +7,25 @@ import { SmallShowPlaySong } from "../../components/SmallShowPlaySong";
 import { useEffect, useState } from "react";
 import { usePlayer } from "../../contexts/AudioPlayerContext";
 import { getSongs } from "../../contexts/GetTrack";
-import { User } from "@auth0/auth0-react";
 import { getUser } from "../../services/UserServices";
-// import { getUsers } from "../../utils";
-// import { UserService } from "../../services/UserServices";
-// import { useAuth } from "../../contexts/AuthContext";
+import { User } from "../../utils";
+
+
 
 const HomePage = () => {
   const { setSongs } = usePlayer();
-  const [Users, setUsers] = useState<User[]>([]);
+  const [users, setUsers] = useState<User[]>([]);
 
-useEffect(() => {
-  const fetchData = async () => {
-    const User = await getUser();
-    console.log(User)
-    if (User) {
-      setUsers(User);
-    }
-  };
+  useEffect(() => {
+    const fetchData = async () => {
+      const playlistData = await getUser();
+      if (playlistData) {
+        setUsers(playlistData.data);
+      }
+    };
 
-  fetchData();
-}, [setUsers]);
+    fetchData();
+  }, [setUsers]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -62,13 +60,6 @@ useEffect(() => {
 
         <VerticalScrollLayout height="42rem">
         <div>
-          <ul>
-            {Users.map((User, index) => (
-              <li key={index } className="bg-slate-50">
-                <p>Holii {User.first_name} caracoli</p>
-              </li>
-            ))}
-          </ul>
           </div>
           <div className="mt-5 ml-5">
             <h2 className="text-2xl mb-5 text-tops">Top Albums</h2>
@@ -77,6 +68,15 @@ useEffect(() => {
             </HorizontalScrollLayout>
           </div>
           <div className="mt-5 ml-5 ">
+          <ul>
+            {users.slice(1).map((User, index) => (
+              <li key={index} className="bg-slate-50">
+                {User.first_name}
+              </li>
+              // Assuming each movie object has a 'title' property
+            ))} 
+          </ul>
+          {/* <p>{users[0].first_name}</p> */}
             <h2 className="text-2xl mb-5 text-tops">Top Artists</h2>
             <HorizontalScrollLayout>
               <TopArtist />

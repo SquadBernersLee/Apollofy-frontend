@@ -4,6 +4,7 @@ export function Login() {
 
 
     const {loginWithRedirect} = useAuth0();
+    // console.log(loginWithRedirect)
 
     return (
         <>

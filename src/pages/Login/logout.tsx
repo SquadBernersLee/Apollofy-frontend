@@ -2,6 +2,7 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { IoLogOutOutline } from "react-icons/io5";
 
+
 export const Logout = () => {
     const { logout } = useAuth0();
 
