@@ -101,7 +101,6 @@ const HomePage = () => {
     <div className="relative h-screen bg-background">
       <div className="lg:ml-12">
         <div className="relative flex">
-          {/* <img className="h-20" src={user.profilePicture} alt="Avatar" /> */}
           <svg
             className="h-12 absolute top-5 right-5"
             data-slot="icon"
@@ -124,7 +123,6 @@ const HomePage = () => {
             </HorizontalScrollLayout>
           </div>
           <div className="mt-5 ml-5 ">
-            {/* <p>{users[0].first_name}</p> */}
             <h2 className="text-2xl mb-5 text-tops">Top Artists</h2>
             <HorizontalScrollLayout>
               <TopArtist />

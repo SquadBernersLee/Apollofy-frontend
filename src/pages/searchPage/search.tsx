@@ -28,7 +28,6 @@ export default function SearchBarPage() {
   );
 
   const baseUrl = `http://localhost:4000/api/search?query=${filter}`;
-  console.log(baseUrl);
 
   const [searchResults, setSearchResults] = useState<SearchResult>({
     songs: [],

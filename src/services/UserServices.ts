@@ -32,7 +32,7 @@ export const UpdateUser = async () => {
     }
 };
 
-export const deleteUser = async () => {
+export const DeleteUser = async () => {
     try {
         const response = await axios.delete(`${baseUrl}/3`);
         return response.data;

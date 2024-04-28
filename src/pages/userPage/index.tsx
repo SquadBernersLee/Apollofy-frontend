@@ -1,9 +1,7 @@
-// import { IoSettingsOutline } from "react-icons/io5";
 import axios from "axios";
 import { SmallShowPlaySong } from "../../components/SmallShowPlaySong";
 import { NavBar } from "../../components/navbar";
 import { Logout } from "../Login/logout";
-// import CreateUserComponent from "./createUser";
 import UpdateUserComponent from "./updateUser";
 import { useEffect, useState } from "react";
 import { User } from "../../utils";
@@ -16,17 +14,15 @@ export const UserPage = () => {
 
   const deleteUser = async () => {
     try {
-      const response = await axios.delete(`${baseUrl}/31`);
+      const response = await axios.delete(`${baseUrl}/32`);
       console.log("User deleted:", response.data);
       setDeletedMessage("User deleted successfully");
 
-      // Después de 2 segundos, limpiar el mensaje de eliminación
       setTimeout(() => {
         setDeletedMessage("");
       }, 2000);
     } catch (err) {
       console.error("Error deleting user:", err);
-      // Aquí podrías mostrar un mensaje de error o realizar alguna otra acción
     }
   };
 
@@ -68,7 +64,6 @@ export const UserPage = () => {
                   <li key={index}>
                     <p className="text-names">{User.img}</p>
                   </li>
-                  // Assuming each movie object has a 'title' property
                 ))} 
               </ul>
             </div>
@@ -76,9 +71,8 @@ export const UserPage = () => {
               <ul>
                 {users.slice(0, 1).map((User, index) => (
                   <li key={index}>
-                    <p className="text-names">Hola {User.first_name} {User.last_name}, Bienvenido de nuevo!</p>
+                    <p className="text-names">Hi {User.first_name} {User.last_name}, Welcom Back!</p>
                   </li>
-                  // Assuming each movie object has a 'title' property
                 ))} 
               </ul>
             </div>
@@ -88,7 +82,6 @@ export const UserPage = () => {
                   <li key={index}>
                     <p className="text-names">email:{User.email}</p>
                   </li>
-                  // Assuming each movie object has a 'title' property
                 ))} 
               </ul>
             </div>
@@ -98,7 +91,6 @@ export const UserPage = () => {
                   <li key={index}>
                     <p className="text-names">From: {User.city}, {User.country}</p>
                   </li>
-                  // Assuming each movie object has a 'title' property
                 ))} 
               </ul>
             </div>
@@ -108,7 +100,6 @@ export const UserPage = () => {
                   <li key={index}>
                     <p className="text-names">Gender: {User.gender}</p>
                   </li>
-                  // Assuming each movie object has a 'title' property
                 ))} 
               </ul>
             </div>
@@ -118,7 +109,6 @@ export const UserPage = () => {
                   <li key={index}>
                     <p className="text-names">Date of Bitrh: {User.dateOfBirth}</p>
                   </li>
-                  // Assuming each movie object has a 'title' property
                 ))} 
               </ul>
             </div>
@@ -128,13 +118,11 @@ export const UserPage = () => {
                   <li key={index}>
                     <p className="text-names">WOW! you have {User.popularity} starts</p>
                   </li>
-                  // Assuming each movie object has a 'title' property
                 ))} 
               </ul>
             </div>
           </div>
         </div>
-        {/* <div className="flex flex-col m-6  "></div> */}
         <div className="absolute bottom-14 w-screen">
           <SmallShowPlaySong selectedSongId={null} />
         </div>
