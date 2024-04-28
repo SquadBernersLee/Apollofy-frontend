@@ -63,7 +63,7 @@ import Modal from 'react-modal';
         const handleSubmit = async (e: React.FormEvent) => {
             e.preventDefault();
             
-            const id = 26; // Aquí asigna el ID que deseas agregar a la URL
+            const id = 27; // Aquí asigna el ID que deseas agregar a la URL
             const url = `${baseUrl}/${id}`;
 
             try {

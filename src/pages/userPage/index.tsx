@@ -3,7 +3,7 @@ import axios from "axios";
 import { SmallShowPlaySong } from "../../components/SmallShowPlaySong";
 import { NavBar } from "../../components/navbar";
 import { Logout } from "../Login/logout";
-import CreateUserComponent from "./createUser";
+// import CreateUserComponent from "./createUser";
 import UpdateUserComponent from "./updateUser";
 import { useEffect, useState } from "react";
 import { User } from "../../utils";
@@ -15,7 +15,7 @@ export const UserPage = () => {
 
   const deleteUser = async () => {
     try {
-      const response = await axios.delete(`${baseUrl}/26`);
+      const response = await axios.delete(`${baseUrl}/27`);
       console.log("User deleted:", response.data);
       // Aquí podrías realizar alguna acción adicional si lo necesitas
     } catch (err) {
@@ -49,9 +49,6 @@ export const UserPage = () => {
                 <p className="text-btn" onClick={deleteUser}>Delete User</p>
               </button>
             </div>
-          <div>
-            <CreateUserComponent />
-          </div>
           <div>
             <UpdateUserComponent />
           </div>
