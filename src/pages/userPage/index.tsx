@@ -12,12 +12,18 @@ import { getUser } from "../../services/UserServices";
 export const UserPage = () => {
 
   const baseUrl = 'http://localhost:4000/api/user/account'
+  const [deletedMessage, setDeletedMessage] = useState<string>("");
 
   const deleteUser = async () => {
     try {
-      const response = await axios.delete(`${baseUrl}/27`);
+      const response = await axios.delete(`${baseUrl}/31`);
       console.log("User deleted:", response.data);
-      // Aquí podrías realizar alguna acción adicional si lo necesitas
+      setDeletedMessage("User deleted successfully");
+
+      // Después de 2 segundos, limpiar el mensaje de eliminación
+      setTimeout(() => {
+        setDeletedMessage("");
+      }, 2000);
     } catch (err) {
       console.error("Error deleting user:", err);
       // Aquí podrías mostrar un mensaje de error o realizar alguna otra acción
@@ -44,11 +50,14 @@ export const UserPage = () => {
           <div className="flex justify-between gap-72 mx-5 mt-8 lg:mt-8">
             <Logout />
           </div>
-            <div>
-              <button className="text-xl">
-                <p className="text-btn" onClick={deleteUser}>Delete User</p>
-              </button>
-            </div>
+          <div>
+            <button className="text-xl" onClick={deleteUser}>
+              <p className="text-btn">Delete User</p>
+            </button>
+            {deletedMessage && (
+              <div className="text-red-400 mt-2">{deletedMessage}</div>
+            )}
+          </div>
           <div>
             <UpdateUserComponent />
           </div>
