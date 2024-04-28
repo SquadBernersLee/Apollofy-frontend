@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { IoChevronBackSharp } from "react-icons/io5";
 import { NavBar } from "../../components/navbar";
 import {
+  addSongPlaylist,
   followUnfollow,
   getPlaylistById,
   getSongsByPlaylistId,
@@ -10,6 +11,7 @@ import {
 import { useNavigate, useParams } from "react-router";
 import VerticalScrollLayout from "../../layouts/verticalScroll";
 import HorizontalScrollLayout from "../../layouts/horizontalScroll";
+import { getTracks } from "../../services/services.tracks";
 
 export interface Track {
   id: number;
@@ -78,11 +80,47 @@ const SelectedPlaylist = () => {
     }
   };
 
+  const addSongPlaylistFront = async ({
+    id,
+    trackId,
+  }: {
+    id: number;
+    trackId: number;
+  }) => {
+    try {
+      const response = await addSongPlaylist({ id, trackId });
+      if (response) {
+        setIsFollowing(!isFollowing);
+        window.location.reload();
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const [tracksAll, settracksAll] = useState<Track[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const tracksData = await getTracks();
+      if (tracksData) {
+        settracksAll(tracksData);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const [isPopupVisible, setIsPopupVisible] = useState(false);
+  const togglePopup = () => {
+    setIsPopupVisible(!isPopupVisible);
+  };
   return (
     <div className="bg-black h-screen w-screen relative">
       <button onClick={goBack}>
         <IoChevronBackSharp className="text-2xl text-white ml-3 mt-3 hover:text-accent" />
       </button>
+
       <div className="pt-10 pl-20">
         <img
           src={currePlaylist?.imageUrl}
@@ -99,7 +137,32 @@ const SelectedPlaylist = () => {
           </button>
         </div>
       </div>
-
+      <div>
+        <button onClick={togglePopup}>
+          <p className="text-white">Add song</p>
+        </button>
+        {isPopupVisible && (
+          <VerticalScrollLayout height="20rem">
+            <div>
+              {tracksAll.length > 0 &&
+                tracksAll.map((track) => (
+                  <div key={track.id} className="bg-white">
+                    <p
+                      onClick={() =>
+                        addSongPlaylistFront({
+                          id: number,
+                          trackId: track.id,
+                        })
+                      }
+                    >
+                      {track.name}
+                    </p>
+                  </div>
+                ))}
+            </div>
+          </VerticalScrollLayout>
+        )}
+      </div>
       <div className="pt-10 pl-5 ">
         <p className="text-white text-3xl">{currePlaylist?.name}</p>
       </div>
