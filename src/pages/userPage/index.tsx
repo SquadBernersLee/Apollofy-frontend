@@ -57,12 +57,12 @@ export const UserPage = () => {
           <div>
             <UpdateUserComponent />
           </div>
-          <div className="flex items-center justify-center flex-col mt-32">
-          <div className="ml-20 flex mt-4">
+          <div className="flex flex-col mt-20">
+            <div className="ml-20 flex mt-4">
               <ul>
                 {users.slice(0, 1).map((User, index) => (
                   <li key={index}>
-                    <p className="text-names">{User.img}</p>
+                    <img src={User.img} className="text-names" alt="User Avatar" />
                   </li>
                 ))} 
               </ul>
@@ -71,7 +71,7 @@ export const UserPage = () => {
               <ul>
                 {users.slice(0, 1).map((User, index) => (
                   <li key={index}>
-                    <p className="text-names">Hi {User.first_name} {User.last_name}, Welcom Back!</p>
+                    <p className="text-names">Hi {User.first_name}, Welcom Back!</p>
                   </li>
                 ))} 
               </ul>
