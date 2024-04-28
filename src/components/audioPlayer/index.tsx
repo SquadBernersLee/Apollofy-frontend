@@ -19,6 +19,7 @@ import {
   addSongToUserLikedSongs,
   // deleteSongFromUserLikedSongs,
 } from "../../utils";
+import { likeTrack } from "../../services/services.tracks";
 
 const AudioPlayer = () => {
   //the states from the context
@@ -38,10 +39,9 @@ const AudioPlayer = () => {
 
   const handleAddSongClick = async () => {
     try {
-      const updatedUser = await addSongToUserLikedSongs(
-        user.id,
-        songs[currentSongIndex].id
-      );
+      console.log("todata" + songs[currentSongIndex].id);
+      const updatedUser = await likeTrack(3, songs[currentSongIndex].id);
+
       updateUser(updatedUser); // Update user context
     } catch (error) {
       console.error("Error adding song:", error);
@@ -197,15 +197,15 @@ const AudioPlayer = () => {
           />
         </div>
         <div className="relative">
-          <span className="ml-5 text-white hover:text-btn">{formatTime(currentTime)}</span>
+          <span className="ml-5 text-white hover:text-btn">
+            {formatTime(currentTime)}
+          </span>
           <span className="absolute right-5 text-white hover:text-btn">
             {formatTime(duration)}
           </span>
         </div>
         <div className="w-screen flex gap-10 justify-center">
-          <LiaRandomSolid 
-            className="text-4xl text-white hover:text-btn"
-          />
+          <LiaRandomSolid className="text-4xl text-white hover:text-btn" />
           <IoPlaySkipBackSharp
             className="text-4xl text-white hover:text-btn"
             onClick={handleSkipBackward}
@@ -221,9 +221,7 @@ const AudioPlayer = () => {
             className="text-4xl text-white hover:text-btn"
             onClick={handleSkipForward}
           />
-          <MdOutlineRestartAlt
-            className="text-4xl text-white hover:text-btn"  
-          />
+          <MdOutlineRestartAlt className="text-4xl text-white hover:text-btn" />
         </div>
       </div>
     </>

@@ -1,0 +1,33 @@
+import axios from "axios";
+
+const baseUrl = "http://localhost:4000/api/track";
+
+export const getAllLikedTracks = async (userid: number) => {
+  try {
+    const response = await axios.get(`${baseUrl}/likeTrack/${userid}`);
+    return response.data;
+  } catch (err) {
+    return null;
+  }
+};
+
+export const getTracks = async () => {
+  try {
+    const response = await axios.get(baseUrl);
+    return response.data;
+  } catch (err) {
+    return null;
+  }
+};
+
+export const likeTrack = async (userid: number, trackid: number) => {
+  try {
+    const response = await axios.post(`${baseUrl}/likeTrack`, {
+      userid,
+      trackid,
+    });
+    return response.data;
+  } catch (err) {
+    return null;
+  }
+};

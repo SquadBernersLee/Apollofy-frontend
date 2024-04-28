@@ -5,8 +5,8 @@ import {
   useEffect,
   ReactNode,
 } from "react";
-import { getSongs } from "./GetTrack";
 import { getAlbums } from "../utils";
+import { getTracks } from "../services/services.tracks";
 
 interface PlayerContextType {
   playing: boolean;
@@ -67,7 +67,6 @@ interface PlayerProviderProps {
 }
 
 export const PlayerProvider = ({ children }: PlayerProviderProps) => {
- 
   const [songs, setSongs] = useState<Song[]>([]);
   const [albums, setAlbums] = useState<Albums[]>([]);
   const [playing, setPlaying] = useState(false);
@@ -76,11 +75,10 @@ export const PlayerProvider = ({ children }: PlayerProviderProps) => {
   const [currentSongIndex, setCurrentSongIndex] = useState(1);
   const [volume, setVolume] = useState(0.5);
 
-  
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const songsData = await getSongs(); 
+        const songsData = await getTracks();
         setSongs(songsData);
       } catch (error) {
         console.error("Error fetching songs:", error);
@@ -93,7 +91,7 @@ export const PlayerProvider = ({ children }: PlayerProviderProps) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const albumsData = await getAlbums(); 
+        const albumsData = await getAlbums();
         setAlbums(albumsData);
       } catch (error) {
         console.error("Error fetching songs:", error);

@@ -101,9 +101,9 @@ export default function AlbumComponents() {
       <div className="pt-10 pl-5 ">
         <p className="text-white text-3xl">{selectedAlbum?.name}</p>
       </div>
-      <div className="  pl-5 pb-10">
+      {/*   <div className="  pl-5 pb-10">
         <p className="text-white text-xl">{selectedAlbum?.artist}</p>
-      </div>
+      </div> */}
 
       <VerticalScrollLayout height="25rem">
         <div className="pl-5">
