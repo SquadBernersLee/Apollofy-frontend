@@ -69,3 +69,30 @@ export interface Tracks {
   id: string;
   name: string;
 }
+
+export interface ArtistFromSearch {
+  id: number;
+  first_name: string;
+  last_name: string;
+  profilePicture: string;
+}
+
+export interface SongFromSearch {
+  id: number;
+  name: string;
+  thumbnail: string;
+  artist: string;
+}
+
+export interface AlbumFromSearch {
+  id: number;
+  name: string;
+  imageUrl: string;
+  artist: string;
+}
+
+export interface SearchResult {
+  artists: ArtistFromSearch[];
+  songs: SongFromSearch[];
+  albums: AlbumFromSearch[];
+}

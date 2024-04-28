@@ -1,86 +1,72 @@
-import { Link, useSearchParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { NavBar } from "../../components/navbar";
+import axios from "axios";
+import { useCallback, useEffect, useState } from "react";
 import { useFilter } from "../../contexts/FilterContext";
-import { PublicRoutes } from "../../types/routes";
-import { usePlayer } from "../../contexts/AudioPlayerContext";
-import { Album, Artist } from "../../utils/index.tsx";
-import { getAlbums, getArtists } from "../../contexts/GetTrack";
-import { Song } from "../../utils/index.tsx";
-import { SmallShowPlaySong } from "../../components/SmallShowPlaySong";
+import debounce from "lodash/debounce";
+import {
+  AlbumFromSearch,
+  ArtistFromSearch,
+  SearchResult,
+  SongFromSearch,
+} from "../../utils/index.tsx";
+import { PublicRoutes } from "../../types/routes.ts";
+import { Link } from "react-router-dom";
 
 export default function SearchBarPage() {
   const { filter, handleSetFilter } = useFilter();
-  const [searchParams, setSearchParams] = useSearchParams();
-  const { songs } = usePlayer();
-  const [albums, setAlbums] = useState<Album[]>([]);
-  const [artists, setArtists] = useState<Artist[]>([]);
+  const [selectedSongId, setSelectedSongId] = useState<number | null>(null);
+  const [loading, setLoading] = useState(false);
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleFilter = (e: any) => {
     const newFilter = e.target.value;
-    setSearchParams({ filter: newFilter });
+
     handleSetFilter(newFilter);
   };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const debouncedHandleFilter = useCallback(
+    debounce((newValue) => handleSetFilter(newValue), 50),
+    [handleSetFilter]
+  );
+
+  const baseUrl = `http://localhost:4000/api/search?query=${filter}`;
+  console.log(baseUrl);
+
+  const [searchResults, setSearchResults] = useState<SearchResult>({
+    songs: [],
+    artists: [],
+    albums: [],
+  });
 
   useEffect(() => {
-    handleSetFilter("");
-  }, []);
-
-  useEffect(() => {
-    const fetchAlbums = async () => {
+    if (!filter) return;
+    const getSearch = async () => {
+      setLoading(true);
       try {
-        const albumsData = await getAlbums();
-        setAlbums(albumsData);
-      } catch (error) {
-        console.error("Error getting albums:", error);
+        const response = await fetch(baseUrl);
+        if (!response.ok) throw new Error("Network response was not ok");
+        const data = await response.json();
+        setSearchResults(data.data);
+      } catch (err) {
+        console.error("Failed to fetch data:", err);
+        setSearchResults({
+          songs: [],
+          artists: [],
+          albums: [],
+        }); 
+      } finally {
+        setLoading(false);
       }
     };
 
-    fetchAlbums();
-  }, []);
-
-  useEffect(() => {
-    const fetchArtists = async () => {
-      try {
-        const artistsData = await getArtists();
-        setArtists(artistsData);
-      } catch (error) {
-        console.error("Error getting artists:", error);
-      }
-    };
-
-    fetchArtists();
-  }, []);
-
-  const songResults: Song[] = [];
-  const artistResults: Artist[] = [];
-  const albumResults: Album[] = [];
-
-  songs.filter((song) => {
-    if (
-      song.name.toLowerCase().includes(filter.toLowerCase()) ||
-      song.artist.toLowerCase().includes(filter.toLowerCase())
-    ) {
-      songResults.push(song);
+    if (filter) {
+      getSearch();
     }
-  });
+  }, [baseUrl, filter]);
+  
+  const artists = searchResults.artists;
+  const songs = searchResults.songs;
+  const albums = searchResults.albums;
 
-  artists.filter((artist) => {
-    if (artist.name.toLowerCase().includes(filter.toLowerCase())) {
-      artistResults.push(artist);
-    }
-  });
-  albums.filter((album) => {
-    if (
-      album.name.toLowerCase().includes(filter.toLowerCase()) ||
-      album.artist.toLowerCase().includes(filter.toLowerCase())
-    ) {
-      albumResults.push(album);
-    }
-  });
 
-  const [selectedSongId, setSelectedSongId] = useState<number | null>(null);
 
   return (
     <div className="flex flex-col bg-background h-screen">
@@ -92,7 +78,7 @@ export default function SearchBarPage() {
           type="text"
           placeholder="Artist, song or album"
           value={filter}
-          onChange={handleFilter}
+          onChange={(e) => debouncedHandleFilter(e.target.value)}
         />
       </form>
 
@@ -100,10 +86,10 @@ export default function SearchBarPage() {
         <p className="text-tops text-2xl mt-10 ml-12 lg:ml-80">Top songs</p>
       ) : (
         <>
-          {songResults.length > 0 && (
+          {songs?.length > 0 ? (
             <div className="lg:ml-5">
               <h3 className="text-tops text-lg ml-5 lg:ml-80">Songs</h3>
-              {songResults.map((song) => (
+              {songs.map((song) => (
                 <SearchResultSong
                   song={song}
                   key={song.id}
@@ -111,32 +97,33 @@ export default function SearchBarPage() {
                 />
               ))}
             </div>
+          ) : (
+            <div className="text-gray-500 ml-5 lg:ml-80">No songs found</div>
           )}
-          {artistResults.length > 0 && (
+
+          {artists?.length > 0 ? (
             <div className="lg:ml-80">
               <h3 className="text-tops text-lg ml-5">Artists</h3>
-              {artistResults.map((artist) => (
+              {artists.map((artist) => (
                 <SearchResultArtist artist={artist} key={artist.id} />
               ))}
             </div>
+          ) : (
+            <div className="text-gray-500 ml-5 lg:ml-80">No artists found</div>
           )}
-          {albumResults.length > 0 && (
+
+          {albums?.length > 0 ? (
             <div className="lg:ml-80">
               <h3 className="text-tops text-lg ml-5">Albums</h3>
-              {albumResults.map((album) => (
+              {albums.map((album) => (
                 <SearchResultAlbum album={album} key={album.id} />
               ))}
             </div>
+          ) : (
+            <div className="text-gray-500 ml-5 lg:ml-80">No albums found</div>
           )}
         </>
       )}
-      <div className="absolute bottom-14 w-screen">
-        <SmallShowPlaySong selectedSongId={selectedSongId} />
-      </div>
-
-      <div className="absolute bottom-0 w-screen">
-        <NavBar />
-      </div>
     </div>
   );
 }
@@ -145,7 +132,7 @@ export function SearchResultSong({
   song,
   setSelectedSongId,
 }: {
-  song: Song;
+  song: SongFromSearch;
   setSelectedSongId: (id: number | null) => void;
 }) {
   const handleClick = () => {
@@ -165,18 +152,18 @@ export function SearchResultSong({
     </div>
   );
 }
-export function SearchResultArtist({ artist }: { artist: Artist }) {
+export function SearchResultArtist({ artist }: { artist: ArtistFromSearch }) {
   return (
     <Link to={PublicRoutes.SONG}>
       <div className="bg-btn my-2 mx-5 rounded flex  lg:max-w-80">
-        <img className="w-8 h-8 m-2" src={artist.photoUrl} />
-        <p className="text-black ml-5">{artist.name}</p>
+        <img className="w-8 h-8 m-2" src={artist.profilePicture} />
+        <p className="text-black ml-5">{artist.first_name}</p>
       </div>
     </Link>
   );
 }
 
-export function SearchResultAlbum({ album }: { album: Album }) {
+export function SearchResultAlbum({ album }: { album: AlbumFromSearch }) {
   return (
     <Link to={PublicRoutes.SONG}>
       <div className="bg-btn my-2 mx-5 rounded flex  lg:max-w-80">
