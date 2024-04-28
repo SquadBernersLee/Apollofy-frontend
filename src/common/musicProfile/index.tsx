@@ -1,17 +1,17 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import { getAlbums, getArtists } from "../../contexts/GetTrack";
+import { getArtists } from "../../contexts/GetTrack";
 import {
   getFollowedPlaylistsByUserId,
   getPlaylists,
 } from "../../services/services.playlist";
+import { getAlbums } from "../../services/services.albums";
 
 interface Albums {
   id: number;
   name: string;
   imageUrl: string;
-  artist: string;
 }
 
 export function TopAlbums() {
@@ -21,7 +21,7 @@ export function TopAlbums() {
     const fetchAlbums = async () => {
       try {
         const albumsData = await getAlbums();
-        setAlbums(albumsData);
+        setAlbums(albumsData.data);
       } catch (error) {
         console.error("Error al obtener los álbumes:", error);
       }
@@ -42,7 +42,6 @@ export function TopAlbums() {
             />
           </Link>
           <p className="text-tops">{album.name}</p>
-          <p className="text-names">{album.artist}</p>
         </div>
       ))}
     </div>
