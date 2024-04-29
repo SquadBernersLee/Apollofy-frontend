@@ -31,12 +31,12 @@ const UploadSongs = () => {
       const updatedTrackData = {
         ...trackData,
         genreId: 1,
-        albumId: 1,
+        albumId: 2,
       };
 
       // Call createTrackService with trackData
       await createTrack(updatedTrackData);
-      console.log("track data:" + JSON.stringify(trackData));
+      console.log("track data:" + JSON.stringify(updatedTrackData));
       // Reset form fields
       setTrackData({
         name: "",
