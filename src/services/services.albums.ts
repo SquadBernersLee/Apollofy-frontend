@@ -10,9 +10,8 @@ export const addAlbum = async (albumData: {
     const response = await axios.post(baseUrl, albumData);
     return response.data;
   } catch (err) {
-    // Handle errors
     console.error("Error adding album:", err);
-    throw err; // Re-throw the error to be handled by the caller
+    throw err;
   }
 };
 

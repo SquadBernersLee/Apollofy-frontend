@@ -1,40 +1,36 @@
-// import { IoSettingsOutline } from "react-icons/io5";
 import axios from "axios";
 import { SmallShowPlaySong } from "../../components/SmallShowPlaySong";
 import { NavBar } from "../../components/navbar";
 import { Logout } from "../Login/logout";
-// import CreateUserComponent from "./createUser";
 import UpdateUserComponent from "./updateUser";
 import { useEffect, useState } from "react";
 import { User } from "../../utils";
-import { getUser } from "../../services/UserServices";
+import { getUser, getUserById } from "../../services/UserServices";
 
 export const UserPage = () => {
-
-  const baseUrl = 'http://localhost:4000/api/user/account'
+  const baseUrl = "http://localhost:4000/api/user/account";
   const [deletedMessage, setDeletedMessage] = useState<string>("");
 
   const deleteUser = async () => {
     try {
-      const response = await axios.delete(`${baseUrl}/31`);
+      const response = await axios.delete(`${baseUrl}/36`);
       console.log("User deleted:", response.data);
       setDeletedMessage("User deleted successfully");
 
-      // Después de 2 segundos, limpiar el mensaje de eliminación
       setTimeout(() => {
         setDeletedMessage("");
-      }, 2000);
+      }, 1000);
     } catch (err) {
       console.error("Error deleting user:", err);
-      // Aquí podrías mostrar un mensaje de error o realizar alguna otra acción
     }
   };
 
-  const [users, setUsers] = useState<User[]>([]);
+  const [users, setUsers] = useState<User>();
 
   useEffect(() => {
     const fetchData = async () => {
-      const playlistData = await getUser();
+      const playlistData = await getUserById(33);
+      console.log("dataA:" + playlistData);
       if (playlistData) {
         setUsers(playlistData.data);
       }
@@ -61,80 +57,16 @@ export const UserPage = () => {
           <div>
             <UpdateUserComponent />
           </div>
-          <div className="flex items-center justify-center flex-col mt-32">
-          <div className="ml-20 flex mt-4">
-              <ul>
-                {users.slice(0, 1).map((User, index) => (
-                  <li key={index}>
-                    <p className="text-names">{User.img}</p>
-                  </li>
-                  // Assuming each movie object has a 'title' property
-                ))} 
-              </ul>
-            </div>
-            <div className="ml-20 flex mt-4">
-              <ul>
-                {users.slice(0, 1).map((User, index) => (
-                  <li key={index}>
-                    <p className="text-names">Hola {User.first_name} {User.last_name}, Bienvenido de nuevo!</p>
-                  </li>
-                  // Assuming each movie object has a 'title' property
-                ))} 
-              </ul>
-            </div>
-            <div className="ml-20 flex mt-4">
-              <ul>
-                {users.slice(0, 1).map((User, index) => (
-                  <li key={index}>
-                    <p className="text-names">email:{User.email}</p>
-                  </li>
-                  // Assuming each movie object has a 'title' property
-                ))} 
-              </ul>
-            </div>
-            <div className="ml-20 flex mt-4">
-              <ul>
-                {users.slice(0, 1).map((User, index) => (
-                  <li key={index}>
-                    <p className="text-names">From: {User.city}, {User.country}</p>
-                  </li>
-                  // Assuming each movie object has a 'title' property
-                ))} 
-              </ul>
-            </div>
-            <div className="ml-20 flex mt-4">
-              <ul>
-                {users.slice(0, 1).map((User, index) => (
-                  <li key={index}>
-                    <p className="text-names">Gender: {User.gender}</p>
-                  </li>
-                  // Assuming each movie object has a 'title' property
-                ))} 
-              </ul>
-            </div>
-            <div className="ml-20 flex mt-4">
-              <ul>
-                {users.slice(0, 1).map((User, index) => (
-                  <li key={index}>
-                    <p className="text-names">Date of Bitrh: {User.dateOfBirth}</p>
-                  </li>
-                  // Assuming each movie object has a 'title' property
-                ))} 
-              </ul>
-            </div>
-            <div className="ml-20 flex mt-4">
-              <ul>
-                {users.slice(0, 1).map((User, index) => (
-                  <li key={index}>
-                    <p className="text-names">WOW! you have {User.popularity} starts</p>
-                  </li>
-                  // Assuming each movie object has a 'title' property
-                ))} 
-              </ul>
+          <div className="flex flex-col mt-20">
+            <div className="flex flex-col mt-20">
+              <p className="text-names">Hi {users?.first_name}, Welcom Back!</p>
+              <p className="text-names">{users?.email}</p>
             </div>
           </div>
+          <div className="flex flex-col mt-20">
+            <p></p>
+          </div>
         </div>
-        {/* <div className="flex flex-col m-6  "></div> */}
         <div className="absolute bottom-14 w-screen">
           <SmallShowPlaySong selectedSongId={null} />
         </div>
