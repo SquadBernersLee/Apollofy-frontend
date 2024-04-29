@@ -5,7 +5,7 @@ import { SongPage } from "./pages/songPage";
 import HomePage from "./pages/home";
 import { UserPage } from "./pages/userPage";
 import { PublicRoutes } from "./types/routes";
-import SearchBarPage from "./pages/searchPage/search";
+import SearchBarPage from "./pages/searchPage";
 import { FilterProvider } from "./contexts/FilterContext";
 import { AuthProvider } from "./contexts/AuthContext";
 
@@ -16,6 +16,7 @@ import PlaylistsPage from "./pages/playlists";
 import SelectedPlaylist from "./pages/selectedPlaylist";
 import UploadSongs from "./pages/uploadSongs";
 import LibraryPage from "./pages/LibraryPage";
+import ArtistPage from "./pages/artistPage";
 
 function App() {
   return (
@@ -111,6 +112,14 @@ function App() {
                   element={
                     // <PrivateRoute>
                     <UploadSongs />
+                    // </PrivateRoute>
+                  }
+                />
+                <Route
+                  path={PublicRoutes.ARTIST}
+                  element={
+                    // <PrivateRoute>
+                    <ArtistPage />
                     // </PrivateRoute>
                   }
                 />

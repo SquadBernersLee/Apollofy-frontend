@@ -13,4 +13,5 @@ export const PublicRoutes = {
   EDITPROFILE: "/editprofile",
   UPLOAD: "/upload",
   LIBRARY: "/library",
+  ARTIST: "/artist/:userId",
 };

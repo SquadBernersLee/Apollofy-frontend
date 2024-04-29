@@ -18,10 +18,10 @@ export const theme = {
     },
     colors: {
       background: `#1C1C1C`,
-      player: `#05D3F8`,
-      btn: `#009DDD`,
-      names: `#386DBD`,
-      tops: `#0F4571`,    
+      player: `#4D4B4B`,
+      btn: `#E7E1CC`,
+      names: `#dfcc88`,
+      tops: `#BAA86A`,    
     },
     margin: {
       "1/12": "18%",
