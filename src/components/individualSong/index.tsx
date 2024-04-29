@@ -38,7 +38,7 @@ const IndividualSong = ({
   return (
     <div>
       <div
-        className={`mb-12  w-screen relative ${isSelected ? "text-accent" : "text-white"}`}
+        className={`mb-12  w-screen relative ${isSelected ? "text-blue-600" : "text-white"}`}
         onClick={onClick}
       >
         <p className="text-xl">{songName}</p>
