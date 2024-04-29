@@ -48,41 +48,47 @@ export function TopAlbums() {
   );
 }
 
-interface Artists {
+interface ArtistsData {
   id: number;
-  name: string;
-  photoUrl: string;
+  first_name: string;
+  img: string;
 }
 
+
+
 export function TopArtist() {
-  const [artists, setArtists] = useState<Artists[]>([]);
+  const [artists, setArtists] = useState<ArtistsData[]>([]);
 
   useEffect(() => {
     const fetchArtists = async () => {
       try {
-        const artistsData = await getArtists();
+        const artistsData = await getArtists(
+          "http://localhost:4000/api/allartists/"
+        );
         setArtists(artistsData);
       } catch (error) {
-        console.error("Error al obtener los artistas:", error);
+        console.error("Error fetching artists:", error);
       }
     };
 
     fetchArtists();
   }, []);
-
+  
   return (
     <div className="flex gap-8">
       {artists.length > 0 &&
         artists.map((artist) => (
-          <div key={artist.id} className="w-40">
-            <img
-              className="rounded-2xl"
-              src={artist.photoUrl}
-              alt={artist.name}
-            />
+          <Link to={`/artist/${artist.id}`}>
+            <div key={artist.id} className="w-40">
+              <img
+                className="rounded-2xl"
+                src={artist.img}
+                alt={artist.first_name}
+              />
 
-            <p className="text-white">{artist.name}</p>
-          </div>
+              <p className="text-white">{artist.first_name}</p>
+            </div>
+          </Link>
         ))}
     </div>
   );

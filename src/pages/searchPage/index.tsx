@@ -1,20 +1,22 @@
 import { useCallback } from "react";
-import { useFilter } from "../../contexts/FilterContext";
+import { useFilter } from "../../contexts/FilterContext.tsx";
 import debounce from "lodash/debounce";
 import {
   AlbumFromSearch,
   ArtistFromSearch,
   
+  SearchResult,
+  
   SongFromSearch,
 } from "../../utils/index.tsx";
-import { PublicRoutes } from "../../types/routes.ts";
+
 import { Link } from "react-router-dom";
 import { NavBar } from "../../components/navbar/index.tsx";
 import useSearchResults from "../../services/services.search.ts";
 
 export default function SearchBarPage() {
   const { filter, handleSetFilter } = useFilter();
-  const searchResults = useSearchResults(filter);
+  const searchResults: SearchResult = useSearchResults(filter);
   console.log(searchResults)
 
   const debouncedHandleFilter = useCallback(
@@ -115,8 +117,9 @@ export function SearchResultSong({
   );
 }
 export function SearchResultArtist({ artist }: { artist: ArtistFromSearch }) {
+  console.log(artist.id)
   return (
-    <Link to={PublicRoutes.SONG}>
+    <Link to={`/artist/${artist.id}`}>
       <div className="bg-btn my-2 mx-5 rounded flex  lg:max-w-80">
         <img className="w-8 h-8 m-2" src={artist.img} />
         <p className="text-black ml-5">{artist.first_name}</p>
@@ -127,7 +130,7 @@ export function SearchResultArtist({ artist }: { artist: ArtistFromSearch }) {
 
 export function SearchResultAlbum({ album }: { album: AlbumFromSearch }) {
   return (
-    <Link to={PublicRoutes.SONG}>
+    <Link to={`/album/${album.id}`}>
       <div className="bg-btn my-2 mx-5 rounded flex  lg:max-w-80">
         <img src={album.imageUrl} className="w-8 h-8 m-2" />
         <div>

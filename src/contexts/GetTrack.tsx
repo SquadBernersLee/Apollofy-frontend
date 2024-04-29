@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export async function getSongs() {
   try {
     const response = await fetch("src/assets/data/tracks.json");
@@ -17,11 +19,11 @@ export async function getAlbums() {
     throw new Error(`Something is wrong in f APIFetch: ${error}`);
   }
 }
-export async function getArtists() {
+export async function getArtists(baseUrl) {
   try {
-    const response = await fetch("src/assets/data/artists.json");
-    const JSONResponsee = await response.json();
-    return JSONResponsee;
+    const response = await axios.get(baseUrl);
+    
+    return response.data.data.allArtists;
   } catch (error) {
     throw new Error(`Something is wrong in f APIFetch: ${error}`);
   }
