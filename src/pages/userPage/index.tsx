@@ -14,13 +14,13 @@ export const UserPage = () => {
 
   const deleteUser = async () => {
     try {
-      const response = await axios.delete(`${baseUrl}/32`);
+      const response = await axios.delete(`${baseUrl}/36`);
       console.log("User deleted:", response.data);
       setDeletedMessage("User deleted successfully");
-
+  
       setTimeout(() => {
         setDeletedMessage("");
-      }, 2000);
+      }, 1000);
     } catch (err) {
       console.error("Error deleting user:", err);
     }

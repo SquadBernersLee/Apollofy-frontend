@@ -4,11 +4,11 @@ import { Toaster } from 'sonner';
 
 const customStyles = {
     content: {
-        top: '35%',
-        left: '35%',
-        right: '50%',
+        top: '50%',
+        left: '50%',
+        right: '30%',
         bottom: 'auto',
-        marginRight: '-50%',
+        marginRight: '-70%',
         transform: 'translate(-50%, -50%)',
     },
 };
@@ -61,7 +61,7 @@ const UpdateUserComponent: React.FC = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         
-        const id = 33;
+        const id = 37;
         const url = `${baseUrl}/${id}`;
 
         try {
@@ -156,7 +156,7 @@ const UpdateUserComponent: React.FC = () => {
                     </label>
                     <label className="flex flex-col">
                         <span className="mb-1">Image:</span>
-                        <input type="text" name="img" value={formData.img} onChange={handleInputChange} className="border border-gray-300 px-3 py-2 rounded-md focus:outline-none focus:ring focus:border-blue-500" />
+                        <input type="file" name="img" value={formData.img} onChange={handleInputChange} className=" px-3 py-2 rounded-md focus:outline-none focus:ring focus:border-blue-500" />
                     </label>
                 </div>
                 <div className="grid grid-cols-2 gap-x-4">

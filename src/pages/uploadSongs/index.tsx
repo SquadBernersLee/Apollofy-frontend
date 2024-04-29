@@ -81,10 +81,10 @@ const UploadSongs = () => {
             </div>
             <div>
               <label htmlFor="imageUrl" className="text-white">
-                Image URL:
+                Image of the Album:
               </label>
               <input
-                type="text"
+                type="file"
                 id="imageUrl"
                 name="imageUrl"
                 value={albumData.imageUrl}
