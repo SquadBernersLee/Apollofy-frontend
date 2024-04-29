@@ -15,7 +15,7 @@ export function Login() {
                         src="src/assets/apollofyremovebg.png"
                     />
                     <div className="text-white ml-20">
-                        <button  onClick={ () => loginWithRedirect()}>Log in</button>
+                        <button className="border-2 rounded text-names border-tops p-2" onClick={ () => loginWithRedirect()}>Log In</button>
                     </div>
                 </div>
             </div>
