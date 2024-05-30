@@ -28,7 +28,7 @@ export const CreateUser = async () => {
     return response.data;
   } catch (err) {
     console.error("Error creating users:", err);
-    throw new Error("Failed to fetch users");
+    throw new Error("Failed to create users");
   }
 };
 
@@ -38,7 +38,7 @@ export const UpdateUser = async () => {
     return response.data;
   } catch (err) {
     console.error("Error updating users:", err);
-    throw new Error("Failed to fetch users");
+    throw new Error("Failed to update users");
   }
 };
 
@@ -48,6 +48,6 @@ export const DeleteUser = async () => {
     return response.data;
   } catch (err) {
     console.error("Error deleting users:", err);
-    throw new Error("Failed to fetch users");
+    throw new Error("Failed delete users");
   }
 };
