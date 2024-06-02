@@ -13,6 +13,6 @@ jobs:
           node-version: '20'
       - run: npm install --legacy-peer-deps
         name: Build project
-      - run: npm build
+      - run: npm run build
         name: Run tests
-      - run: npm test
+      - run: npm run test
