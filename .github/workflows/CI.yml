@@ -1,6 +1,6 @@
 
 
-name: learn-github-actions
+name: CI Apollofy
 run-name: ${{ github.actor }} is learning GitHub Actions
 on:
   push:
