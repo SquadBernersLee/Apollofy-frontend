@@ -1,7 +1,7 @@
 
 
 name: CI Apollofy
-run-name: ${{ github.actor }} is learning GitHub Actions
+run-name: ${{ github.actor }} is using GitHub Actions
 on: [push, pull_request]
 jobs:
   check-bats-version:
