@@ -37,6 +37,7 @@ export default function SearchBarPage() {
             placeholder="Artist, song or album"
             value={filter}
             onChange={(e) => debouncedHandleFilter(e.target.value)}
+            aria-label="Search Bar"
           />
         </form>
 

@@ -18,13 +18,13 @@ export default function ArtistPage() {
         {artist.first_name}
       </h1>
       <div className="flex justify-center m-5">
-        <img className="w-25 h-25 justify-center" src={artist.img} />
+        <img className="w-25 h-25 justify-center" src={artist.img} alt={artist.first_name} />
       </div>
       <h2 className="m-3 ml-10 text-names text-xl">Albums</h2>
       <div>
         {artist.AlbumArtist.map((album) => (
           <div className="bg-btn my-2 mx-5 rounded flex  lg:max-w-80">
-            <img src={album.Album.imageUrl} className="w-8 h-8 m-2" />
+            <img src={album.Album.imageUrl} alt={album.Album.name} className="w-8 h-8 m-2" />
             <div>
               <p className="text-black ml-5">{album.Album.name}</p>
             </div>
@@ -36,7 +36,7 @@ export default function ArtistPage() {
       <div>
         {artist.ArtistTracks.map((song) => (
           <div className="bg-btn my-2 mx-5 rounded flex  lg:max-w-80">
-            <img src={song.Track.thumbnail} className="w-8 h-8 m-2" />
+            <img src={song.Track.thumbnail} alt={song.Track.name} className="w-8 h-8 m-2" />
             <div>
               <p className="text-black ml-5">{song.Track.name}</p>
             </div>

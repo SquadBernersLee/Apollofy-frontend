@@ -41,7 +41,7 @@ const AudioPlayer = () => {
       console.log("todata" + songs[currentSongIndex].id);
       const updatedUser = await likeTrack(3, songs[currentSongIndex].id);
 
-      updateUser(updatedUser); 
+      updateUser(updatedUser);
     } catch (error) {
       console.error("Error adding song:", error);
     }
@@ -50,12 +50,9 @@ const AudioPlayer = () => {
   const [played, setPlayed] = useState(0);
   const [duration, setDuration] = useState(0);
 
-
   const [initialCurrentTimeSet, setInitialCurrentTimeSet] = useState(false);
 
-
   const playerRef = useRef<ReactPlayer>(null);
-
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -72,7 +69,6 @@ const AudioPlayer = () => {
     setCurrentTime(0);
   }, [currentSongIndex, setCurrentTime]);
 
-
   useEffect(() => {
     if (!initialCurrentTimeSet && currentTime !== 0) {
       playerRef.current?.seekTo(currentTime);
@@ -84,13 +80,11 @@ const AudioPlayer = () => {
     setPlaying(!playing);
   };
 
-
   const handleSeekChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const seekValue = parseFloat(e.target.value);
     setPlayed(seekValue);
     playerRef.current?.seekTo(seekValue);
   };
-
 
   const handleSeekMouseUp = (e: React.MouseEvent<HTMLInputElement>) => {
     playerRef.current?.seekTo(parseFloat(e.currentTarget.value));
@@ -201,21 +195,24 @@ const AudioPlayer = () => {
         <div className="w-screen flex gap-10 justify-center">
           {/*           <LiaRandomSolid className="text-4xl text-white hover:text-btn" />
            */}{" "}
-          <IoPlaySkipBackSharp
-            className="text-4xl text-white hover:text-btn"
-            onClick={handleSkipBackward}
-          />
-          <button onClick={togglePlaying}>
+          <button aria-label="Skip Back">
+            <IoPlaySkipBackSharp
+              className="text-4xl text-white hover:text-btn"
+              onClick={handleSkipBackward}
+            />
+          </button>
+          <button aria-label="Play Pause" onClick={togglePlaying}>
             {playing ? (
-              <IoPauseCircleOutline className="text-4xl text-white hover:text-btn" />
+              <IoPauseCircleOutline data-testid="pause-icon" className="text-4xl text-white hover:text-btn" />
             ) : (
-              <IoPlayCircleOutline className="text-4xl text-white hover:text-btn" />
+              <IoPlayCircleOutline data-testid="play-icon" className="text-4xl text-white hover:text-btn" />
             )}
           </button>
+          <button aria-label="Skip Forward">
           <IoPlaySkipForward
             className="text-4xl text-white hover:text-btn"
             onClick={handleSkipForward}
-          />
+          /></button>
           {/*           <MdOutlineRestartAlt className="text-4xl text-white hover:text-btn" />
            */}{" "}
         </div>

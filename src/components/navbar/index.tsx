@@ -12,7 +12,10 @@ import { BiUpload } from "react-icons/bi";
 
 export function NavBar(): ReactNode {
   return (
-    <section className=" flex justify-between items-center p-4 text-2xl bg-black w-full lg:left-0 lg:w-12 lg:bg-slate-500 lg:block lg:h-screen lg:text-3xl lg:p-2 ">
+    <section
+      data-testid="navbar"
+      className=" flex justify-between items-center p-4 text-2xl bg-black w-full lg:left-0 lg:w-12 lg:bg-slate-500 lg:block lg:h-screen lg:text-3xl lg:p-2 "
+    >
       <Link to={PublicRoutes.HOME}>
         <IoHomeOutline className="text-white hover:text-btn lg:mt-20" />
       </Link>
