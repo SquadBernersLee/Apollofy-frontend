@@ -3,6 +3,7 @@ import { render, screen } from "@testing-library/react";
 import AudioPlayer from "../../src/components/audioPlayer/index";
 import "@testing-library/jest-dom/vitest";
 import { AuthProvider } from "../../src/contexts/AuthContext";
+import React from "react";
 
 describe("Audioplayer", () => {
   it("should render skip back button", () => {

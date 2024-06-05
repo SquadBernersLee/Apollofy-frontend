@@ -1,4 +1,4 @@
-import { it, expect, describe, vi } from "vitest";
+import { it, expect, describe } from "vitest";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom/vitest";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
@@ -10,16 +10,8 @@ import { MySongs } from "../../src/pages/mySongs";
 
 import { FilterProvider } from "../../src/contexts/FilterContext";
 
-// Mock de la funció useArtist
-vi.mock("../../src/services/services.artist", () => ({
-  __esModule: true,
-  default: vi.fn(),
-}));
 
-vi.mock("react-router", () => ({
-    ...vi.importActual("react-router"),
-    useParams: vi.fn(),
-  }));
+
 
 describe("NavBar visibility", () => {
   const renderWithRouter = (route) => {
