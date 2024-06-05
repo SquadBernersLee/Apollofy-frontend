@@ -1,10 +1,10 @@
+import React from "react";
 import { it, expect, describe, vi } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom/vitest";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import ArtistPage from "../../src/pages/artistPage";
 import useArtist from "../../src/services/services.artist";
-import React from "react";
 import { AuthProvider } from "../../src/contexts/AuthContext";
 import { useParams } from "react-router";
 
