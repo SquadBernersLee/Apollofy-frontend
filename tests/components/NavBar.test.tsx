@@ -4,7 +4,6 @@ import "@testing-library/jest-dom/vitest";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import React from "react";
 import { AuthProvider } from "../../src/contexts/AuthContext";
-import ArtistPage from "../../src/pages/artistPage";
 import HomePage from "../../src/pages/home";
 import SearchBarPage from "../../src/pages/searchPage";
 import { MySongs } from "../../src/pages/mySongs";
