@@ -21,16 +21,16 @@ interface PrivateRouteProps {
 }
 
 export const PrivateRoute: React.FC<PrivateRouteProps> = ({ children }) => {
-  const { isAuthenticated } = useAuth();
+   const { isAuthenticated } = useAuth();
   console.log(isAuthenticated)
-  const navigate = useNavigate();
+   const navigate = useNavigate();
 
-  useEffect(
-    function () {
-      if (!isAuthenticated) navigate(PublicRoutes.LOGIN);
-    },
-    [isAuthenticated, navigate]
-  );
-  return isAuthenticated ? children : null;
+   useEffect(
+     function () {
+       if (!isAuthenticated) navigate(PublicRoutes.LOGIN);
+     },
+     [isAuthenticated, navigate]
+   );
+   return isAuthenticated ? children : null;
 };
 
