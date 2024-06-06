@@ -1,6 +1,6 @@
 
 
-name: CI Apollofy
+name: CI Apollofy.
 run-name: ${{ github.actor }} is using GitHub Actions
 on: [push, pull_request]
 jobs:
